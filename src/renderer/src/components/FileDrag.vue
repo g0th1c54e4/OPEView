@@ -8,11 +8,15 @@ let upload_disabled = ref(false);
 
 const upload = (param: UploadRequestOptions) => {
   let file: File = param.file
-  let data: Record<string, string | Blob | [string | Blob, string]> = param.data
-  console.log(file);
-  console.log(data);
 
   upload_disabled.value = true;
+
+  let fr = new FileReader()
+  fr.onload = (e) => {
+    let data_base64 = (((e.target.result).split(","))[1])
+    
+  }
+  fr.readAsDataURL(file)
 }
 
 </script>
