@@ -1,4 +1,5 @@
 <script setup lang="ts">
+//NewJeans - Cool With You
 
 import FileDragArea from './components/FileDrag.vue'
 import MenuArea from './components/Menu.vue';
@@ -10,7 +11,7 @@ import MenuArea from './components/Menu.vue';
   user-select: none;
 }
 .el-header{
-  height: 120px;
+  height: 60px;
 }
 </style>
 

@@ -1,10 +1,10 @@
 {
   "name": "opeview",
   "version": "1.0.0",
-  "description": "An Electron application with Vue and TypeScript",
+  "description": "Check PEFile Structure",
   "main": "./out/main/index.js",
-  "author": "example.com",
-  "homepage": "https://electron-vite.org",
+  "author": "LingMo",
+  "homepage": "https://www.google.com",
   "scripts": {
     "format": "prettier --write .",
     "lint": "eslint . --ext .js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts,.vue --fix",
@@ -23,7 +23,9 @@
   "dependencies": {
     "@electron-toolkit/preload": "^3.0.0",
     "@electron-toolkit/utils": "^3.0.0",
+    "axios": "^1.7.7",
     "element-plus": "^2.8.5",
+    "pinia": "^2.2.4",
     "vue-router": "^4.4.5"
   },
   "devDependencies": {
