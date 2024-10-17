@@ -2,6 +2,14 @@ import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router';
 
 
 const routes: Array<RouteRecordRaw> = [
+  {
+    path: "/StaticInfo/Overview",
+    component: import("./components/Views/Overview.vue")
+  },
+  {
+    path: "/StaticInfo/Header",
+    component: import("./components/Views/Header.vue")
+  },
 ];
  
 const router = createRouter({
