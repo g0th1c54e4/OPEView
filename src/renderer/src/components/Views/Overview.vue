@@ -2,7 +2,6 @@
 
 import { useGlobalStore } from '../../store'
 const global = useGlobalStore()
-global.count = Math.random()*100;
 </script>
 
 <style scoped>
@@ -10,5 +9,20 @@ global.count = Math.random()*100;
 </style>
 
 <template>
-已修改count
+    <el-space direction = "vertical">
+        <el-input :value="((global.attrib.is64bit) ? '64' : '32') + '位 PE 文件'" readonly>
+        <template #prepend>[PE]类型: </template>
+        </el-input>
+
+        <el-input :value="global.attrib.size + ' 字节'" readonly>
+        <template #prepend>文件大小: </template>
+        </el-input>
+
+
+    </el-space>
+
+
+
+
+
 </template>

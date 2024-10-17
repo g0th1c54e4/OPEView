@@ -14,7 +14,8 @@ function createWindow(): void {
     webPreferences: {
       preload: join(__dirname, '../preload/index.js'),
       sandbox: false,
-      nodeIntegration: true
+      nodeIntegration: true,
+      webSecurity: false, //禁用CORS以暂时进行程序调试,在正式版发行前务必恢复正常!
     }
   })
 

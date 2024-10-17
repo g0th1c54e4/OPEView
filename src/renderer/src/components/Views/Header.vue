@@ -1,4 +1,5 @@
 <script setup lang="ts">
+
 import { useGlobalStore } from '../../store'
 const global = useGlobalStore()
 
@@ -9,5 +10,5 @@ const global = useGlobalStore()
 </style>
 
 <template>
-{{ global.count }}
+1
 </template>
