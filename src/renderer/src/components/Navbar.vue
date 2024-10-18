@@ -3,6 +3,13 @@ import { ref } from 'vue'
 import type { UploadUserFile,UploadRequestOptions } from 'element-plus'
 import axios from "axios";
 
+import Calc from './Views/Calc.vue';
+const calc_drawer = ref<boolean>(false);
+import Settings from './Views/Settings.vue';
+const settings_drawer = ref<boolean>(false);
+import About from './Views/About.vue';
+const about_drawer = ref<boolean>(false);
+
 import { useGlobalStore } from '../store'
 const global = useGlobalStore()
 
@@ -78,37 +85,43 @@ const closeFile = () => {
 
   </div> -->
 
-  <div class="sa">
+  <Calc :drawer="calc_drawer" @close="() => {calc_drawer=false}"></Calc>
+  <Settings :drawer="settings_drawer" @close="() => {settings_drawer=false}"></Settings>
+  <About :drawer="about_drawer" @close="() => {about_drawer=false}"></About>
+
+  <div class="navbar">
     <el-upload :drag="true" :show-file-list="false" v-model:file-list="fileList" :auto-upload="true" :limit="1" :http-request="upload"><span class="el-upload__text">点击或拖拽PE文件到此</span></el-upload>
-    <div class="aas">
+    <div class="btnbar">
       <el-input style="width: 95%;height: 40px;" :value="global.attrib.FileName" readonly>
-        <template #prepend>文件名称</template>
+        <template #prepend>文件路径</template>
       </el-input>
 
       <div class="btns">
         <el-button-group>
-        <el-button type="primary" style="width: 90px;" plain>计算器</el-button>
-        <el-button type="primary" style="width: 130px;" plain>进程转换</el-button>
+        <el-button type="primary" style="width: 90px;" plain>刷新</el-button>
+        <el-button type="primary" style="width: 130px;" @click="calc_drawer=true" plain>计算器</el-button>
         </el-button-group>
 
         <el-button-group>
-        <el-button type="primary" style="width: 80px;" plain>设置</el-button>
-        <el-button type="primary" style="width: 80px;" plain>关于</el-button>
+        <el-button type="primary" style="width: 80px;" @click="settings_drawer=true" plain>设置</el-button>
+        <el-button type="primary" style="width: 80px;" @click="about_drawer=true" plain>关于</el-button>
         </el-button-group>
       </div>
 
     </div>
   </div>
+
 </template>
 
 <style scoped>
-.sa{
+.navbar{
   margin-top: 20px;
-  margin-left: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
   display: flex;
   width: 100%;
 }
-.aas{
+.btnbar{
   margin-left: 10px;
   display: flex;
   flex-wrap: wrap;
@@ -122,6 +135,6 @@ const closeFile = () => {
 }
 
 ::v-deep(.el-upload){
-  width: 124px;
+  width: 150px;
 }
 </style>
