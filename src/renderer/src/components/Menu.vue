@@ -3,7 +3,7 @@
 
 <template>
     <el-col>
-        <el-menu router="true">
+        <el-menu :router="true" :unique-opened="true">
             <el-sub-menu>
                 <template #title>
                     <span>程序静态信息</span>
@@ -22,6 +22,14 @@
                 <el-menu-item index="/StaticInfo/Debug">调试表</el-menu-item>
                 <el-menu-item index="/StaticInfo/TLS">TLS表</el-menu-item>
                 <el-menu-item index="/StaticInfo/LoadConfig">加载配置表</el-menu-item>
+
+          </el-sub-menu>
+
+          <el-sub-menu>
+                <template #title>
+                    <span>设置</span>
+                </template>
+                <el-menu-item index="/Settings/About">关于</el-menu-item>
 
           </el-sub-menu>
         </el-menu>

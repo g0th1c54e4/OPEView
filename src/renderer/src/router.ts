@@ -10,6 +10,10 @@ const routes: Array<RouteRecordRaw> = [
     path: "/StaticInfo/Header",
     component: import("./components/Views/Header.vue")
   },
+  {
+    path: "/Tool/Calc",
+    component: import("./components/Views/Calc.vue")
+  },
 ];
  
 const router = createRouter({
