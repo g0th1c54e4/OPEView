@@ -24,6 +24,7 @@ const electron_warning = ref<boolean>( ((window.electron) === undefined) || ((wi
       <el-button type="primary" @click="electron_warning = false">关闭</el-button>
     </template>
   </el-dialog>
+  
   <el-scrollbar height="97vh">
     <el-container>
       <el-header class="Header"><Navbar></Navbar></el-header>

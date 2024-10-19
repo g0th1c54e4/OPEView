@@ -2,9 +2,11 @@ import { IElectron } from './interface'
 
 declare global {
   interface Window {
-
     electron: IElectron
-    net_post: (url : string, data) => {}
-    on_net_post: (callback) => {}
+
+    net_request: (url : string, data) => AxiosResponse<any, any>
+
+    file_read: (filepath : string) => Buffer
+    file_write: (filepath : string, data) => void
   }
 }

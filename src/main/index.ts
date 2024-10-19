@@ -1,8 +1,7 @@
-import { app, BrowserWindow, ipcMain } from 'electron'
+import { app, BrowserWindow } from 'electron'
 import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
-import { net } from 'electron'
 
 function createWindow(): void {
   const mainWindow = new BrowserWindow({
@@ -22,22 +21,6 @@ function createWindow(): void {
 
   mainWindow.on('ready-to-show', () => {
     mainWindow.show()
-  })
-
-  ipcMain.handle("net:post", (_event, param_url : string, param_data) =>{
-
-    const request = net.request({
-      method : "post",
-      url: param_url
-    })
-
-    request.on('response', (response) => {
-      response.on("data", (chunk) => {
-        mainWindow.webContents.send("net:post:back", chunk.toString())
-      })
-    })
-    request.write(JSON.stringify(param_data))
-    request.end()
   })
 
   if (is.dev && process.env['ELECTRON_RENDERER_URL']) {

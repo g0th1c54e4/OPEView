@@ -1,4 +1,6 @@
-import { contextBridge, ipcRenderer } from 'electron'
+import { contextBridge } from 'electron'
+import fs from 'fs'
+import axios from 'axios'
 
 import { IElectron } from './interface'
 
@@ -10,11 +12,18 @@ if (process.contextIsolated) {
   try {
     
     contextBridge.exposeInMainWorld('electron', electron)
-    contextBridge.exposeInMainWorld('net_post', (url : string, data) => {
-      ipcRenderer.invoke("net:post", url, data)
+
+    contextBridge.exposeInMainWorld('net_request', async (url : string, data) => {
+      return await axios.post(url, data)
     })
-    contextBridge.exposeInMainWorld('on_net_post', (callback : (event, data : string) => {}) => {
-      ipcRenderer.on("net:post:back", (event, data) => {callback(event, data)})
+
+    contextBridge.exposeInMainWorld('file_read', (filepath : string) => {
+      let buf : Buffer = fs.readFileSync(filepath)
+      return buf;
+    })
+
+    contextBridge.exposeInMainWorld('file_write', (filepath : string, data) => {
+      fs.writeFileSync(filepath, data)
     })
 
   } catch (error) {
@@ -23,12 +32,21 @@ if (process.contextIsolated) {
 } else {
   // @ts-ignore (define in dts)
   window.electron = electron
+
   // @ts-ignore (define in dts)
-  window.net_post = (param : string) => {
-    ipcRenderer.invoke("net:post", param)
+  window.net_request = async (url : string, data) => {
+    return await axios.post(url, data)
   }
+
   // @ts-ignore (define in dts)
-  window.on_net_post = (callback : (data : string) => {}) => {
-    ipcRenderer.on("net:post:back", (_event, data) => {callback(data)})
+  window.file_read = (filepath : string) => {
+    let buf : Buffer = fs.readFileSync(filepath)
+    return buf;
   }
+
+  // @ts-ignore (define in dts)
+  window.file_write = (filepath : string, data) => {
+    fs.writeFileSync(filepath, data)
+  }
+
 }

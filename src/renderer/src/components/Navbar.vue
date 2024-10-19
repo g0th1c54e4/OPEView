@@ -24,40 +24,36 @@ interface post_json_type {
 
 let FileName : string = ""
 
-window.on_net_post((_event, data) => {
-  const resp_data : post_json_type = data
+const upload = (param: UploadRequestOptions) => {
+  //@ts-ignore
+  if (param.file.path === undefined) {
+    return;
+  }
+  //@ts-ignore
+  FileName = param.file.path
+  let buf = window.file_read(FileName)
+  console.log(buf);
+  
+  //----
+  //@ts-ignore
+  let data:string = (((e.target.result).split(","))[1])
+
+  let post_json: post_json_type = {
+    FileName: param.file.name,
+    Size: param.file.size,
+    Data: data
+  }
+  
+  const resp_data : post_json_type = window.net_request("http://localhost:5555/upload", post_json)
   global.attrib.Buffer = resp_data.Data
   global.attrib.FileName = FileName
-})
-
-const upload = (param: UploadRequestOptions) => {
-  let fr = new FileReader()
-  fr.onload = (e) => {
-    //@ts-ignore
-    let data:string = (((e.target.result).split(","))[1])
-
-    //@ts-ignore
-    if (param.file.path !== undefined) { //@ts-ignore
-      FileName = param.file.path
-    } else {
-      FileName = param.file.name
-    }
-
-    let post_json: post_json_type = {
-      FileName: param.file.name,
-      Size: param.file.size,
-      Data: data
-    }
-
-    window.net_post("http://localhost:5555/upload", post_json)
-
-  }
-  fr.readAsDataURL(param.file)
+  
+  //---
   closeFile();
 }
 
 const closeFile = () => {
-  global.attrib.FileName = ''
+  global.attrib.FileName = '' //?
   fileList.value = []
 }
 
