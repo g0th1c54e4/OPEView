@@ -4,6 +4,7 @@ import type { UploadUserFile,UploadRequestOptions, UploadProgressEvent, UploadIn
 import gifimage from '../assets/output.ico';
 import { Plus, MoreFilled } from '@element-plus/icons-vue'
 import { AxiosResponse } from 'axios'
+import axios from 'axios'
 
 import Calc from './Views/Calc.vue';
 const calc_drawer = ref<boolean>(false);
@@ -20,11 +21,10 @@ import { uint8ArrayToBase64 } from './Utils/util'
 const fileList = ref<UploadUserFile[]>([])
 
 interface post_json_type {
-      FileName: string,
-      Size: number,
-      Data: string,
+  FileName: string,
+  Size: number,
+  Data: string,
 }
-
 
 const upload = (param: UploadRequestOptions) => {
   //@ts-ignore
@@ -41,8 +41,8 @@ const upload = (param: UploadRequestOptions) => {
     Size: param.file.size,
     Data: data
   }
-  
-  window.net_request("http://localhost:5555/upload", post_json).then((resp : AxiosResponse) => {
+
+  axios.post("http://localhost:5555/upload", post_json).then((resp : AxiosResponse) => {
     if (resp.status == 200){
       const resp_data : post_json_type = resp.data
       global.attrib.Buffer = resp_data.Data
@@ -50,6 +50,7 @@ const upload = (param: UploadRequestOptions) => {
       global.attrib.FileName = param.file.path
     }
   })
+
 }
 
 const closeFile = () => {
