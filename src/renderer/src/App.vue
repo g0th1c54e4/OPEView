@@ -28,7 +28,7 @@ const electron_warning = ref<boolean>( ((window.electron) === undefined) || ((wi
   <el-scrollbar height="97vh">
     <el-container>
       <el-header class="Header"><Navbar></Navbar></el-header>
-      <div style="display: flex ;justify-content: center;"><el-divider style="width: 75%;"></el-divider></div>
+      <div style="display: flex ;justify-content: center;"><el-divider style="width: 75%; min-width: 500px;"></el-divider></div>
       <el-container>
         <el-aside width="200px"><MenuArea></MenuArea></el-aside>
         <el-main><RouterView></RouterView></el-main>

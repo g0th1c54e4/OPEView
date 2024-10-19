@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import gifimage from '../../assets/root.gif';
+import { TopLeft } from '@element-plus/icons-vue'
 </script>
 
 <style scoped>
@@ -23,5 +24,6 @@ import gifimage from '../../assets/root.gif';
             <template #error>加载失败</template>
         </el-image>
     </div>
-    <span style="display: flex; justify-content: center; font-size: 20px;" class="font-color">打开或者拖拽PE文件到此</span>
+    
+    <span style="display: flex; justify-content: center; font-size: 20px;" class="font-color"><el-icon><TopLeft /></el-icon>点击或者拖拽PE文件到左上角处</span>
 </template>

@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import type { UploadUserFile,UploadRequestOptions } from 'element-plus'
+import type { UploadUserFile,UploadRequestOptions, UploadProgressEvent } from 'element-plus'
 import axios from "axios";
+import { Plus } from '@element-plus/icons-vue'
 
 import Calc from './Views/Calc.vue';
 const calc_drawer = ref<boolean>(false);
@@ -63,6 +64,10 @@ const closeFile = () => {
   fileList.value = []
 }
 
+const progressFile = (evt:UploadProgressEvent) => {
+  console.log(evt.percent);
+}
+
 </script>
 
 <template>
@@ -87,21 +92,28 @@ const closeFile = () => {
 
   </div> -->
 
-  <Calc :drawer="calc_drawer" @close="() => {calc_drawer=false}"></Calc>
-  <Settings :drawer="settings_drawer" @close="() => {settings_drawer=false}"></Settings>
-  <About :drawer="about_drawer" @close="() => {about_drawer=false}"></About>
-
   <div class="navbar">
-    <el-upload :drag="true" :show-file-list="false" v-model:file-list="fileList" :auto-upload="true" :limit="1" :http-request="upload" @click="console.log('你好')"><span class="el-upload__text">点击或拖拽PE文件到此</span></el-upload>
+    <div style="">
+      <el-upload :action="'#'" :drag="true" :show-file-list="false" v-model:file-list="fileList" :auto-upload="true" :limit="1" :http-request="upload" @on-progress="progressFile">
+        <el-icon><Plus /></el-icon>
+        <template #file>你好</template>
+      </el-upload>
+    </div>
+
     <div class="btnbar">
-      <el-input style="width: 95%;height: 40px;" :value="global.attrib.FileName" readonly>
-        <template #prepend>文件路径</template>
-      </el-input>
+      <div style="display: flex; justify-content: center; width: 100%;">
+        <el-input style="width: 90%; height: 40px;" :value="global.attrib.FileName" readonly>
+          <template #prepend>文件位置</template>
+        </el-input>
+      </div>
 
       <div class="btns">
         <el-button-group>
         <el-button type="primary" style="width: 90px;" plain>刷新</el-button>
-        <el-button type="primary" style="width: 130px;" @click="calc_drawer=true" plain>计算器</el-button>
+        <el-tooltip placement="bottom">
+          <template #content>RVA <-> FOA</template>
+          <el-button type="primary" style="width: 130px;" @click="calc_drawer=true" plain>计算器</el-button>
+        </el-tooltip>
         </el-button-group>
 
         <el-button-group>
@@ -113,15 +125,19 @@ const closeFile = () => {
     </div>
   </div>
 
+  <Calc :drawer="calc_drawer" @close="() => {calc_drawer=false}"></Calc>
+  <Settings :drawer="settings_drawer" @close="() => {settings_drawer=false}"></Settings>
+  <About :drawer="about_drawer" @close="() => {about_drawer=false}"></About>
+
 </template>
 
 <style scoped>
+
 .navbar{
   margin-top: 20px;
-  margin-left: 10px;
-  margin-right: 10px;
+  margin-left: 30px;
   display: flex;
-  width: 100%;
+  width: 97%;
 }
 .btnbar{
   margin-left: 10px;
@@ -137,6 +153,7 @@ const closeFile = () => {
 }
 
 ::v-deep(.el-upload){
-  width: 150px;
+  width: 103px;
+  height: 150px;
 }
 </style>
