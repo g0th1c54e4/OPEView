@@ -2,8 +2,8 @@
 </script>
 
 <template>
-    <el-menu :router="true" :unique-opened="true" menu-trigger="click">
-        <el-sub-menu>
+    <el-menu :router="true">
+        <el-sub-menu index="/StaticInfo">
             <template #title>
                 <span>程序静态信息</span>
             </template>

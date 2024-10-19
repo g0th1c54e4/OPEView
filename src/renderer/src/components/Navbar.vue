@@ -18,6 +18,7 @@ const fileList = ref<UploadUserFile[]>([])
 const upload = (param: UploadRequestOptions) => {
   let fr = new FileReader()
   fr.onload = (e) => {
+    //@ts-ignore
     let data:string = (((e.target.result).split(","))[1])
 
     interface post_json_type {
@@ -39,7 +40,8 @@ const upload = (param: UploadRequestOptions) => {
         
         const resp_data : post_json_type = response.data
         global.attrib.Buffer = resp_data.Data
-        if (param.file.path !== undefined){
+        //@ts-ignore
+        if (param.file.path !== undefined) { //@ts-ignore
           global.attrib.FileName = param.file.path
         }else{
           global.attrib.FileName = param.file.name
@@ -90,7 +92,7 @@ const closeFile = () => {
   <About :drawer="about_drawer" @close="() => {about_drawer=false}"></About>
 
   <div class="navbar">
-    <el-upload :drag="true" :show-file-list="false" v-model:file-list="fileList" :auto-upload="true" :limit="1" :http-request="upload"><span class="el-upload__text">点击或拖拽PE文件到此</span></el-upload>
+    <el-upload :drag="true" :show-file-list="false" v-model:file-list="fileList" :auto-upload="true" :limit="1" :http-request="upload" @click="console.log('你好')"><span class="el-upload__text">点击或拖拽PE文件到此</span></el-upload>
     <div class="btnbar">
       <el-input style="width: 95%;height: 40px;" :value="global.attrib.FileName" readonly>
         <template #prepend>文件路径</template>

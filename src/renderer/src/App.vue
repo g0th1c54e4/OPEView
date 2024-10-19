@@ -5,7 +5,8 @@ import Navbar from './components/Navbar.vue'
 import MenuArea from './components/Menu.vue';
 import { ref } from 'vue';
 
-const electron_warning = ref<boolean>((window.electron) === undefined)
+const electron_warning = ref<boolean>( ((window.electron) === undefined) || ((window.electron.enable) === false))
+
 </script>
 
 <style scoped>

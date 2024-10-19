@@ -1,6 +1,10 @@
+import { IElectron } from './interface'
+
 declare global {
   interface Window {
-    api: unknown
-    electron: boolean
+
+    electron: IElectron
+    net_post: VoidFunction
+    
   }
 }
