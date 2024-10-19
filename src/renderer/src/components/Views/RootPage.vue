@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import gifimage from '../../assets/root.gif';
 import { TopLeft } from '@element-plus/icons-vue'
+
 </script>
 
 <style scoped>
@@ -19,6 +20,7 @@ import { TopLeft } from '@element-plus/icons-vue'
 </style>
 
 <template>
+
     <div class="root-div">
         <el-image :src="gifimage">
             <template #error>加载失败</template>
