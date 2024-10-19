@@ -32,11 +32,12 @@ function createWindow(): void {
     })
 
     request.on('response', (response) => {
-      response.on("data", (chunk)=>{
+      response.on("data", (chunk) => {
         mainWindow.webContents.send("net:post:back", chunk.toString())
       })
     })
-    request.end();
+    request.write(JSON.stringify(param_data))
+    request.end()
   })
 
   if (is.dev && process.env['ELECTRON_RENDERER_URL']) {

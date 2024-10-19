@@ -13,8 +13,8 @@ if (process.contextIsolated) {
     contextBridge.exposeInMainWorld('net_post', (url : string, data) => {
       ipcRenderer.invoke("net:post", url, data)
     })
-    contextBridge.exposeInMainWorld('on_net_post', (callback : (data : string) => {}) => {
-      ipcRenderer.on("net:post:back", (_event, data) => {callback(data)})
+    contextBridge.exposeInMainWorld('on_net_post', (callback : (event, data : string) => {}) => {
+      ipcRenderer.on("net:post:back", (event, data) => {callback(event, data)})
     })
 
   } catch (error) {

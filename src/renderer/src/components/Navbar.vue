@@ -14,10 +14,18 @@ const about_drawer = ref<boolean>(false);
 import { useGlobalStore } from '../store'
 const global = useGlobalStore()
 
-const fileList = ref<UploadUserFile[]>([])
+interface post_json_type {
+      FileName: string,
+      Size: number,
+      Data: string,
+}
 
-window.on_net_post((data : string)=>{
-  console.log(data);
+let FileName : string = ""
+
+window.on_net_post((_event, data) => {
+  const resp_data : post_json_type = data
+  global.attrib.Buffer = resp_data.Data
+  global.attrib.FileName = FileName
 })
 
 const upload = (param: UploadRequestOptions) => {
@@ -26,10 +34,11 @@ const upload = (param: UploadRequestOptions) => {
     //@ts-ignore
     let data:string = (((e.target.result).split(","))[1])
 
-    interface post_json_type {
-      FileName: string,
-      Size: number,
-      Data: string,
+    //@ts-ignore
+    if (param.file.path !== undefined) { //@ts-ignore
+      FileName = param.file.path
+    } else {
+      FileName = param.file.name
     }
 
     let post_json: post_json_type = {
@@ -39,26 +48,6 @@ const upload = (param: UploadRequestOptions) => {
     }
 
     window.net_post("http://localhost:5555/upload", post_json)
-
-    // axios.post('http://localhost:5555/upload', post_json)
-    // .then((response) => {
-    //   if (response.status == 200){
-    //     console.log(param);
-        
-    //     const resp_data : post_json_type = response.data
-    //     global.attrib.Buffer = resp_data.Data
-    //     //@ts-ignore
-    //     if (param.file.path !== undefined) { //@ts-ignore
-    //       global.attrib.FileName = param.file.path
-    //     }else{
-    //       global.attrib.FileName = param.file.name
-    //     }
-        
-    //   }
-    // })
-    // .catch((error) => {
-    //   console.error(error)
-    // })
 
   }
   fr.readAsDataURL(param.file)
@@ -74,6 +63,7 @@ const progressFile = (evt:UploadProgressEvent) => {
   console.log(evt.percent);
 }
 
+const fileList = ref<UploadUserFile[]>([])
 </script>
 
 <template>
