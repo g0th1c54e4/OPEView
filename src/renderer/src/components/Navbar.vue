@@ -3,6 +3,7 @@ import { ref } from 'vue'
 import type { UploadUserFile,UploadRequestOptions, UploadProgressEvent, UploadInstance } from 'element-plus'
 import gifimage from '../assets/output.ico';
 import { Plus, MoreFilled } from '@element-plus/icons-vue'
+import { AxiosResponse } from 'axios'
 
 import Calc from './Views/Calc.vue';
 const calc_drawer = ref<boolean>(false);
@@ -14,6 +15,8 @@ const about_drawer = ref<boolean>(false);
 import { useGlobalStore } from '../store'
 const global = useGlobalStore()
 
+import { uint8ArrayToBase64 } from './Utils/util'
+
 const fileList = ref<UploadUserFile[]>([])
 
 interface post_json_type {
@@ -22,38 +25,35 @@ interface post_json_type {
       Data: string,
 }
 
-let FileName : string = ""
 
 const upload = (param: UploadRequestOptions) => {
   //@ts-ignore
   if (param.file.path === undefined) {
     return;
   }
+  closeFile()
   //@ts-ignore
-  FileName = param.file.path
-  let buf = window.file_read(FileName)
-  console.log(buf);
-  
-  //----
-  //@ts-ignore
-  let data:string = (((e.target.result).split(","))[1])
+  const buf = window.file_read(param.file.path)
+  const data : string = uint8ArrayToBase64(buf)
 
-  let post_json: post_json_type = {
+  const post_json: post_json_type = {
     FileName: param.file.name,
     Size: param.file.size,
     Data: data
   }
   
-  const resp_data : post_json_type = window.net_request("http://localhost:5555/upload", post_json)
-  global.attrib.Buffer = resp_data.Data
-  global.attrib.FileName = FileName
-  
-  //---
-  closeFile();
+  window.net_request("http://localhost:5555/upload", post_json).then((resp : AxiosResponse) => {
+    if (resp.status == 200){
+      const resp_data : post_json_type = resp.data
+      global.attrib.Buffer = resp_data.Data
+      //@ts-ignore
+      global.attrib.FileName = param.file.path
+    }
+  })
 }
 
 const closeFile = () => {
-  global.attrib.FileName = '' //?
+  global.attrib.FileName = ''
   fileList.value = []
 }
 
