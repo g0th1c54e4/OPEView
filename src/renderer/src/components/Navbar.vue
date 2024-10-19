@@ -16,6 +16,10 @@ const global = useGlobalStore()
 
 const fileList = ref<UploadUserFile[]>([])
 
+window.on_net_post((data : string)=>{
+  console.log(data);
+})
+
 const upload = (param: UploadRequestOptions) => {
   let fr = new FileReader()
   fr.onload = (e) => {
@@ -34,25 +38,27 @@ const upload = (param: UploadRequestOptions) => {
       Data: data
     }
 
-    axios.post('http://localhost:5555/upload', post_json)
-    .then((response) => {
-      if (response.status == 200){
-        console.log(param);
+    window.net_post("http://localhost:5555/upload", post_json)
+
+    // axios.post('http://localhost:5555/upload', post_json)
+    // .then((response) => {
+    //   if (response.status == 200){
+    //     console.log(param);
         
-        const resp_data : post_json_type = response.data
-        global.attrib.Buffer = resp_data.Data
-        //@ts-ignore
-        if (param.file.path !== undefined) { //@ts-ignore
-          global.attrib.FileName = param.file.path
-        }else{
-          global.attrib.FileName = param.file.name
-        }
+    //     const resp_data : post_json_type = response.data
+    //     global.attrib.Buffer = resp_data.Data
+    //     //@ts-ignore
+    //     if (param.file.path !== undefined) { //@ts-ignore
+    //       global.attrib.FileName = param.file.path
+    //     }else{
+    //       global.attrib.FileName = param.file.name
+    //     }
         
-      }
-    })
-    .catch((error) => {
-      console.error(error)
-    })
+    //   }
+    // })
+    // .catch((error) => {
+    //   console.error(error)
+    // })
 
   }
   fr.readAsDataURL(param.file)

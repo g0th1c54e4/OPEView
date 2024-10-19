@@ -24,15 +24,19 @@ function createWindow(): void {
     mainWindow.show()
   })
 
-  ipcMain.handle("net:post", (_event, _param : string) =>{
+  ipcMain.handle("net:post", (_event, param_url : string, param_data) =>{
+
     const request = net.request({
       method : "post",
-      url: "http://localhost:5555/upload"
+      url: param_url
     })
 
     request.on('response', (response) => {
-      console.log(response)
+      response.on("data", (chunk)=>{
+        mainWindow.webContents.send("net:post:back", chunk.toString())
+      })
     })
+    request.end();
   })
 
   if (is.dev && process.env['ELECTRON_RENDERER_URL']) {
