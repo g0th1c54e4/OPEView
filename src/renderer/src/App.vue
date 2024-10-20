@@ -5,15 +5,30 @@ import Navbar from './components/Navbar.vue'
 import MenuArea from './components/Menu.vue';
 import { ref } from 'vue';
 
+import { useGlobalStore } from './store'
+const global = useGlobalStore()
+
+import { upload , recv_data_type } from './ajax'
+
 const electron_warning = ref<boolean>( ((window.electron) === undefined) || ((window.electron.enable) === false))
 
-function FileDrop(e){
+async function FileDrop(e){
   e.preventDefault();
   const files = e.dataTransfer.files;
  
   if(files && files.length === 1) {
     const path = files[0].path;
-    console.log('path:', path);
+
+    const data : recv_data_type = await upload(path)
+    if (data.Status === "Successful"){
+      global.attrib.Buffer = data.Data
+      global.attrib.FileName = data.FileName
+      global.attrib.FilePath = data.FilePath
+      global.attrib.Size = data.Size
+    } else {
+      console.error("data.Status != 'Successful'")
+    }
+
   }
 
 }

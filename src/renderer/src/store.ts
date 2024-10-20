@@ -4,6 +4,7 @@ import { reactive } from 'vue'
 export const useGlobalStore = defineStore('global', () => {
   const attrib = reactive({
     FileName: "",
+    FilePath: "",
     Size: 1001,
     Buffer: "",
 

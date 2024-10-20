@@ -1,4 +1,4 @@
-import { contextBridge, OpenDialogOptions, SaveDialogOptions, ipcRenderer } from 'electron'
+import { contextBridge, ipcRenderer } from 'electron'
 import fs from 'fs'
 
 import { IElectron } from './interface'
@@ -21,11 +21,11 @@ if (process.contextIsolated) {
       fs.writeFileSync(filepath, data)
     })
 
-    contextBridge.exposeInMainWorld('file_opendialog', (options : OpenDialogOptions) => {
+    contextBridge.exposeInMainWorld('file_opendialog', (options) => {
       return ipcRenderer.invoke("dialog:openfile", options)
     })
 
-    contextBridge.exposeInMainWorld('file_savedialog', (options : SaveDialogOptions) => {
+    contextBridge.exposeInMainWorld('file_savedialog', (options) => {
       return ipcRenderer.invoke("dialog:savefile", options)
     })
   
@@ -49,14 +49,14 @@ if (process.contextIsolated) {
     fs.writeFileSync(filepath, data)
   }
 
-  // // @ts-ignore (define in dts)
-  // window.file_opendialog = async (options : OpenDialogOptions) => {
-  //   return await dialog.showOpenDialog(options)
-  // }
+  // @ts-ignore (define in dts)
+  window.file_opendialog = (options) => {
+    return ipcRenderer.invoke("dialog:openfile", options)
+  }
 
-  // // @ts-ignore (define in dts)
-  // window.file_savedialog = async (options : SaveDialogOptions) => {
-  //   return await dialog.showSaveDialog(options)
-  // }
+  // @ts-ignore (define in dts)
+  window.file_savedialog = (options) => {
+    return ipcRenderer.invoke("dialog:savefile", options)
+  }
 
 }
