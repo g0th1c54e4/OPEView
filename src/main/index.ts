@@ -1,4 +1,4 @@
-import { app, BrowserWindow } from 'electron'
+import { app, BrowserWindow, ipcMain, OpenDialogOptions, SaveDialogOptions, dialog } from 'electron'
 import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
@@ -35,6 +35,22 @@ app.whenReady().then(() => {
 
   app.on('browser-window-created', (_, window) => {
     optimizer.watchWindowShortcuts(window)
+  })
+
+  ipcMain.handle("dialog:openfile", async (_event, options : OpenDialogOptions) => {
+    const { canceled, filePaths } = await dialog.showOpenDialog(options)
+    if (!canceled) {
+      return filePaths
+    }
+    return []
+  })
+
+  ipcMain.handle("dialog:savefile", async (_event, options : SaveDialogOptions) => {
+    const { canceled, filePath } = await dialog.showSaveDialog(options)
+    if (!canceled) {
+      return filePath
+    }
+    return ""
   })
 
   createWindow()

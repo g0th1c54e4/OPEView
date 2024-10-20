@@ -26,7 +26,7 @@ interface post_json_type {
   Data: string,
 }
 
-const upload = (param: UploadRequestOptions) => {
+function upload (param: UploadRequestOptions){
   //@ts-ignore
   if (param.file.path === undefined) {
     return;
@@ -53,17 +53,23 @@ const upload = (param: UploadRequestOptions) => {
 
 }
 
-const closeFile = () => {
+function closeFile(){
   global.attrib.FileName = ''
   fileList.value = []
 }
 
-const progressFile = (evt:UploadProgressEvent) => {
+function progressFile(evt:UploadProgressEvent){
   console.log(evt.percent);
 }
 
 const upload_ref = ref<UploadInstance>()
 const tour = ref(false);
+
+async function test(){
+  
+  console.log(await window.file_savedialog({title:"你好"}));
+  
+}
 
 </script>
 
@@ -88,7 +94,7 @@ const tour = ref(false);
 
       <div class="btns">
         <el-button-group>
-        <el-button type="primary" style="width: 90px;" plain>刷新</el-button>
+        <el-button type="primary" style="width: 90px;" @click="test" plain>刷新</el-button>
         <el-tooltip placement="bottom">
           <template #content>RVA <-> FOA</template>
           <el-button type="primary" style="width: 130px;" @click="calc_drawer=true" plain>计算器</el-button>
