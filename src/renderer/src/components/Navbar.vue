@@ -35,8 +35,6 @@ async function fileopen(){
   }
 }
 
-const tour = ref(false);
-
 async function test(){
   console.log(await window.file_savedialog({title:"你好"}));
 }
@@ -47,34 +45,36 @@ async function test(){
 
   <div class="navbar">
     <div class="upload_image_box">
-      <el-image :src="icon"></el-image>
+      <el-image :src="icon" style="width: 65%;"></el-image>
     </div>
 
     <div class="btnbar">
-      <div style="display: flex; justify-content: center; width: 100%;">
-        <el-input style="width: 90%; height: 40px;" :value="global.attrib.FilePath" readonly>
+      <div style="display: flex; justify-content: center; align-items: center; width: 100%;">
+        <el-input style="width: 80%; height: 35px;" :value="global.attrib.FilePath" readonly>
           <template #prepend>文件位置</template>
-          <template #suffix>
-            <el-button type="primary" @click="fileopen">打开文件</el-button>
-          </template>
         </el-input>
+        <el-button type="primary" @click="fileopen" style="margin-left: 4px;">打开文件</el-button>
       </div>
 
       <div class="btns">
         <el-button-group>
-        <el-button type="primary" style="width: 90px;" @click="test" plain>刷新</el-button>
+        <el-button type="primary" style="width: 80px;" plain>保存</el-button>
+        <el-button type="primary" style="width: 80px;" plain>关闭</el-button>
+        <el-button type="primary" style="width: 80px;" @click="test" plain>刷新</el-button>
+
+        </el-button-group>
+
         <el-tooltip placement="bottom">
           <template #content>RVA <-> FOA</template>
           <el-button type="primary" style="width: 130px;" @click="calc_drawer=true" plain>计算器</el-button>
         </el-tooltip>
-        </el-button-group>
 
         <el-button-group>
         <el-button type="primary" style="width: 80px;" @click="settings_drawer=true" plain>设置</el-button>
         <el-button type="primary" style="width: 80px;" @click="about_drawer=true" plain>关于</el-button>
         <el-tooltip placement="bottom">
-          <template #content>开启教程</template>
-          <el-button type="primary" @click="tour=true" plain><el-icon><MoreFilled /></el-icon></el-button>
+          <template #content>...</template>
+          <el-button type="primary" plain><el-icon><MoreFilled /></el-icon></el-button>
         </el-tooltip>
         </el-button-group>
         
@@ -86,12 +86,6 @@ async function test(){
   <Calc :drawer="calc_drawer" @close="() => {calc_drawer=false}"></Calc>
   <Settings :drawer="settings_drawer" @close="() => {settings_drawer=false}"></Settings>
   <About :drawer="about_drawer" @close="() => {about_drawer=false}"></About>
-
-  <!-- <el-tour v-model="tour" type="primary" :show-close="false">
-    <el-tour-step :target="upload_ref?.$el" placement="right">
-      点击或者拖拽PE文件到此处。
-    </el-tour-step>
-  </el-tour> -->
 
 </template>
 
@@ -118,8 +112,8 @@ async function test(){
 }
 
 .upload_image_box{
-  width: 115px;
-  height: 115px;
+  width: 125px;
+  height: 110px;
   display: flex;
   justify-content: center;
   align-items: center;
