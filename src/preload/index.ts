@@ -1,7 +1,9 @@
 import { contextBridge, ipcRenderer } from 'electron'
 import fs from 'fs'
 
-import { IElectron } from './interface'
+interface IElectron {
+  enable: boolean
+}
 
 const electron : IElectron = {
   enable: true

@@ -14,7 +14,7 @@ import { upload , recv_data_type } from '../ajax'
 
 import { OpenDialogReturnValue } from 'electron';
 
-import { useGlobalStore } from '../store'
+import { useGlobalStore, updateStore } from '../store'
 const global = useGlobalStore()
 
 async function fileopen(){
@@ -24,13 +24,11 @@ async function fileopen(){
 
   if (returnValue.canceled !== true){
     const data : recv_data_type = await upload(returnValue.filePaths[0])
+    console.log(data);
     if (data.Status === "Successful"){
-      global.attrib.Buffer = data.Data
-      global.attrib.FileName = data.FileName
-      global.attrib.FilePath = data.FilePath
-      global.attrib.Size = data.Size
+      updateStore(data.Analysis)
     } else {
-      console.error("data.Status != 'Successful'")
+      console.error("data.Status wasn't 'Successful'")
     }
   }
 }

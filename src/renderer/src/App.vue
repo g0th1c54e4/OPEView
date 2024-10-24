@@ -5,7 +5,7 @@ import Navbar from './components/Navbar.vue'
 import MenuArea from './components/Menu.vue';
 import { ref } from 'vue';
 
-import { useGlobalStore } from './store'
+import { useGlobalStore, updateStore } from './store'
 const global = useGlobalStore()
 
 import { upload , recv_data_type } from './ajax'
@@ -21,10 +21,7 @@ async function FileDrop(e){
 
     const data : recv_data_type = await upload(path)
     if (data.Status === "Successful"){
-      global.attrib.Buffer = data.Data
-      global.attrib.FileName = data.FileName
-      global.attrib.FilePath = data.FilePath
-      global.attrib.Size = data.Size
+      updateStore(data.Analysis)
     } else {
       console.error("data.Status != 'Successful'")
     }

@@ -1,5 +1,8 @@
-import { IElectron } from './interface'
 import { OpenDialogOptions, SaveDialogOptions, OpenDialogReturnValue, SaveDialogReturnValue } from 'electron'
+
+interface IElectron {
+  enable: boolean
+}
 
 declare global {
   interface Window {
