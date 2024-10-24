@@ -21,7 +21,7 @@ const global = useGlobalStore()
   
   <div class="box">
 
-    <el-input :value="((global.attrib.OverView.Is64bit) ? '64' : '32') + '位 PE 文件'" readonly>
+    <el-input :value="(global.attrib.OverView.Is64bit) + '位 PE 文件'" readonly>
     <template #prepend>[PE]类型</template>
     </el-input>
 

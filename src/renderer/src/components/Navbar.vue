@@ -26,6 +26,7 @@ async function fileopen(){
     const data : recv_data_type = await upload(returnValue.filePaths[0])
     if (data.Status === "Successful"){
       updateStore(data.Analysis)
+      global.attrib.OverView.FilePath = returnValue.filePaths[0]
     } else {
       console.error("data.Status wasn't 'Successful'")
     }

@@ -3,6 +3,7 @@ import { AxiosResponse } from 'axios'
 import { uint8ArrayToBase64 } from './Utils/util'
 
 import { AnalysisPEData } from "./store"
+import { ElNotification } from 'element-plus'
 
 export interface send_data_type {
     Size: number,
@@ -25,10 +26,21 @@ export async function upload(filePath : string){
         Data: data
     }
 
-    const resp : AxiosResponse = await axios.post("http://localhost:5555/upload", post_data)
-    if (resp.status == 200){
-        const resp_data = resp.data
-        return resp_data
+    try{
+        const resp : AxiosResponse = await axios.post("http://localhost:5555/upload", post_data)
+        if (resp.status == 200){
+            const resp_data = resp.data
+            return resp_data
+        } else {
+            throw {};
+        }
+    } catch(err){
+        ElNotification({
+            title: "[DEBUG]:",
+            message: "无法响应 C++ 服务器。",
+            duration: 3000,
+            type: 'error'
+        })
     }
 
     return {}

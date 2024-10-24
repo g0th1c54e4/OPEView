@@ -18,10 +18,10 @@ async function FileDrop(e){
  
   if(files && files.length === 1) {
     const path = files[0].path;
-
     const data : recv_data_type = await upload(path)
     if (data.Status === "Successful"){
       updateStore(data.Analysis)
+      global.attrib.OverView.FilePath = path
     } else {
       console.error("data.Status != 'Successful'")
     }
