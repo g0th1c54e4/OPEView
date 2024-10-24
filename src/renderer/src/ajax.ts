@@ -19,6 +19,7 @@ export async function upload(filePath : string){
     const data : string = uint8ArrayToBase64(buf)
 
     const size : number = buf.length
+
     const post_data: send_data_type = {
         Size: size,
         Data: data

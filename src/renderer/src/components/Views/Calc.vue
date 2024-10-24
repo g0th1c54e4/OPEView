@@ -14,6 +14,6 @@ const global = useGlobalStore()
 
 <template>
     <el-drawer :model-value="drawer" title = "计算器" direction="rtl" :close-on-click-modal="false" size="70%">
-        <span>计算{{ global.attrib.FileName }}</span>
+        <span>计算{{ global.attrib.OverView.FilePath }}</span>
     </el-drawer>
 </template>

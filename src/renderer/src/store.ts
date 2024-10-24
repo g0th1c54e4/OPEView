@@ -6,14 +6,9 @@ import { IMAGE_DATA_DIRECTORY, IMAGE_DOS_HEADER, IMAGE_FILE_HEADER, IMAGE_OPTION
 // ----------------------------------------------------
 type HexString = string
 
-export interface BasicInfoData {
-  FileName: string,
+export interface OverViewData {
   FilePath: string,
   Size: number,
-  Buffer: string
-}
-
-export interface OverViewData {
   IsPEFile: boolean,
   Is64bit: boolean,
   CreateData: Date,
@@ -44,18 +39,19 @@ export interface HeadersData {
 }
 
 export interface AnalysisPEData {
-  BasicInfo: BasicInfoData,
-
   OverView: OverViewData,
   Headers: HeadersData
 }
 
 export const useGlobalStore = defineStore('global', () => {
   // @ts-ignore
-  const attrib : AnalysisPEData = reactive({});
+  const attrib : AnalysisPEData = reactive({
+    OverView:{
+      FilePath: ""
+    }
+  });
   return { attrib }
 })
-
 
 export function updateStore(new_store_data : AnalysisPEData){
   const global = useGlobalStore()

@@ -21,71 +21,71 @@ const global = useGlobalStore()
   
   <div class="box">
 
-    <el-input :value="((global.attrib.Is64bit) ? '64' : '32') + '位 PE 文件'" readonly>
+    <el-input :value="((global.attrib.OverView.Is64bit) ? '64' : '32') + '位 PE 文件'" readonly>
     <template #prepend>[PE]类型</template>
     </el-input>
 
-    <el-input :value="global.attrib.Size + ' 字节'" readonly>
+    <el-input :value="global.attrib.OverView.Size + ' 字节'" readonly>
     <template #prepend>文件大小</template>
     </el-input>
 
-    <el-input :value="global.attrib.CreateData" readonly>
+    <el-input :value="global.attrib.OverView.CreateData" readonly>
     <template #prepend>创建日期</template>
     </el-input>
 
-    <el-input :value="global.attrib.FileVersion" readonly>
+    <el-input :value="global.attrib.OverView.FileVersion" readonly>
     <template #prepend>文件版本</template>
     </el-input>
 
-    <el-input :value="global.attrib.EntrySectionName" readonly>
+    <el-input :value="global.attrib.OverView.EntrySectionName" readonly>
     <template #prepend>程序入口所在区段</template>
     </el-input>
 
-    <el-input :value="global.attrib.EntryAddrRVA" readonly>
+    <el-input :value="global.attrib.OverView.EntryAddrRVA" readonly>
     <template #prepend>程序入口RVA</template>
     </el-input>
 
-    <el-input :value="global.attrib.EntryAddrFOA" readonly>
+    <el-input :value="global.attrib.OverView.EntryAddrFOA" readonly>
     <template #prepend>程序入口FOA</template>
     </el-input>
 
-    <el-input :value="global.attrib.SectionNum" readonly>
+    <el-input :value="global.attrib.OverView.SectionNum" readonly>
     <template #prepend>区块数量</template>
     </el-input>
 
-    <el-input :value="global.attrib.ImageBase" readonly>
+    <el-input :value="global.attrib.OverView.ImageBase" readonly>
     <template #prepend>映像基址</template>
     </el-input>
 
-    <el-input :value="global.attrib.FileType" readonly>
+    <el-input :value="global.attrib.OverView.FileType" readonly>
     <template #prepend>文件类型</template>
     </el-input>
 
-    <el-input :value="global.attrib.SubSystem" readonly>
+    <el-input :value="global.attrib.OverView.SubSystem" readonly>
     <template #prepend>子系统</template>
     </el-input>
 
-    <el-input :value="global.attrib.MD5" readonly>
+    <el-input :value="global.attrib.OverView.MD5" readonly>
     <template #prepend>MD5</template>
     </el-input>
 
-    <el-input :value="global.attrib.SHA1" readonly>
+    <el-input :value="global.attrib.OverView.SHA1" readonly>
     <template #prepend>SHA1</template>
     </el-input>
 
-    <el-input :value="global.attrib.SAH256" readonly>
+    <el-input :value="global.attrib.OverView.SAH256" readonly>
     <template #prepend>SAH256</template>
     </el-input>
 
-    <el-input :value="global.attrib.SAH512" readonly>
+    <el-input :value="global.attrib.OverView.SAH512" readonly>
     <template #prepend>SAH512</template>
     </el-input>
 
-    <el-input :value="global.attrib.CRC32" readonly>
+    <el-input :value="global.attrib.OverView.CRC32" readonly>
     <template #prepend>CRC32</template>
     </el-input>
 
-    <el-input :value="global.attrib.AuthentiHash" readonly>
+    <el-input :value="global.attrib.OverView.AuthentiHash" readonly>
     <template #prepend>AuthentiHash</template>
     </el-input>
         

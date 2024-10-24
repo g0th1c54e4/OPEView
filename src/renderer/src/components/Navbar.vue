@@ -47,7 +47,7 @@ async function test(){
 
     <div class="btnbar">
       <div style="display: flex; justify-content: center; align-items: center; width: 100%;">
-        <el-input style="width: 80%; height: 35px;" :value="global.attrib.FilePath" readonly>
+        <el-input style="width: 80%; height: 35px;" :value="global.attrib.OverView.FilePath" readonly>
           <template #prepend>文件位置</template>
         </el-input>
         <el-button type="primary" @click="fileopen" style="margin-left: 4px;">打开文件</el-button>
