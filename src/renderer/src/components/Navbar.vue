@@ -24,7 +24,6 @@ async function fileopen(){
 
   if (returnValue.canceled !== true){
     const data : recv_data_type = await upload(returnValue.filePaths[0])
-    console.log(data);
     if (data.Status === "Successful"){
       updateStore(data.Analysis)
     } else {

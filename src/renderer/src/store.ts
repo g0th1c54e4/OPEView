@@ -1,29 +1,63 @@
 import { defineStore } from 'pinia'
 import { reactive } from 'vue'
 
-import { IMAGE_DOS_HEADER } from "./pefile"
+import { IMAGE_DATA_DIRECTORY, IMAGE_DOS_HEADER, IMAGE_FILE_HEADER, IMAGE_OPTIONAL_HEADER32, IMAGE_OPTIONAL_HEADER64, IMAGE_SECTION_HEADER } from "./pefile"
+
+// ----------------------------------------------------
+type HexString = string
+
+export interface BasicInfoData {
+  FileName: string,
+  FilePath: string,
+  Size: number,
+  Buffer: string
+}
 
 export interface OverViewData {
-  FileName: string,
+  IsPEFile: boolean,
+  Is64bit: boolean,
+  CreateData: Date,
+  EntrySectionName: string,
+  EntryAddrRVA: HexString,
+  EntryAddrFOA: HexString,
+  SectionNum: number,
+  ImageBase: HexString,
+  MD5: string,
+  SHA1: string,
+  SAH256: string,
+  SAH512: string,
+  CRC32: string,
+  AuthentiHash: string,
+  FileType: string,
+  FileVersion: string,
+  SubSystem: string,
+  ICON: string,
+}
+
+export interface HeadersData {
+  DosHdr: IMAGE_DOS_HEADER,
+  FileHdr: IMAGE_FILE_HEADER,
+  OptFileHdr32: IMAGE_OPTIONAL_HEADER32,
+  OptFileHdr64: IMAGE_OPTIONAL_HEADER64,
+  DataDirs: IMAGE_DATA_DIRECTORY[],
+  SecHdrs: IMAGE_SECTION_HEADER[]
 }
 
 export interface AnalysisPEData {
+  BasicInfo: BasicInfoData,
+
   OverView: OverViewData,
+  Headers: HeadersData
 }
 
 export const useGlobalStore = defineStore('global', () => {
-  const attrib : AnalysisPEData = reactive({
-    OverView: {
-      FileName : ""
-      
-    },
-  });
-
+  // @ts-ignore
+  const attrib : AnalysisPEData = reactive({});
   return { attrib }
 })
 
 
 export function updateStore(new_store_data : AnalysisPEData){
   const global = useGlobalStore()
-  
+  global.attrib = new_store_data;
 }
