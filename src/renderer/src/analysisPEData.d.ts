@@ -35,7 +35,14 @@ export interface OverViewData {
     SecHdrs: IMAGE_SECTION_HEADER[]
   }
   
+  export interface Function {
+    Addr: string,
+    Name: string,
+    
+  }
+
   export interface AnalysisPEData {
     OverView: OverViewData,
-    Headers: HeadersData
+    Headers: HeadersData,
+    Functions: Function[]
   }

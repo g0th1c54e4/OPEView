@@ -18,6 +18,10 @@ const routes: Array<RouteRecordRaw> = [
     path: "/Tool/Calc",
     component: () => import("./components/Views/Calc.vue")
   },
+  {
+    path: "/Analysis/Functions",
+    component: () => import("./components/Views/Functions.vue")
+  },
 ];
  
 const router = createRouter({

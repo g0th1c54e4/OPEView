@@ -82,7 +82,7 @@ const global = useGlobalStore()
     </el-input>
 
     <el-input :value="global.attrib.OverView.CRC32" readonly>
-    <template #prepend>CRC32</template>
+    <template #prepend>CheckSum</template>
     </el-input>
 
     <el-input :value="global.attrib.OverView.AuthentiHash" readonly>

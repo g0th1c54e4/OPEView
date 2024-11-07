@@ -22,6 +22,16 @@
             <el-menu-item index="/StaticInfo/TLS">TLS表</el-menu-item>
             <el-menu-item index="/StaticInfo/LoadConfig">加载配置表</el-menu-item>
 
+            
+
+      </el-sub-menu>
+
+      <el-sub-menu index="/Analysis">
+            <template #title>
+                <span>解析</span>
+            </template>
+            <el-menu-item index="/Analysis/Functions">函数库</el-menu-item>
+
       </el-sub-menu>
 
     </el-menu>
