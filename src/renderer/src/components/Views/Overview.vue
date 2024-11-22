@@ -1,7 +1,10 @@
 <script setup lang="ts">
 
+import { ref } from 'vue';
 import { useGlobalStore } from '../../store'
 const global = useGlobalStore()
+
+let card_AuthentiHash = ref<boolean>(false);
 </script>
 
 <style scoped>
@@ -13,7 +16,6 @@ const global = useGlobalStore()
   }
   .box>.el-input{
     width: 92%;
-    margin-bottom: 7px;
   }
 </style>
 
@@ -77,6 +79,10 @@ const global = useGlobalStore()
     <template #prepend>SAH256</template>
     </el-input>
 
+    <el-input :value="global.attrib.OverView.SAH384" readonly>
+    <template #prepend>SAH384</template>
+    </el-input>
+
     <el-input :value="global.attrib.OverView.SAH512" readonly>
     <template #prepend>SAH512</template>
     </el-input>
@@ -85,9 +91,28 @@ const global = useGlobalStore()
     <template #prepend>CheckSum</template>
     </el-input>
 
-    <el-input :value="global.attrib.OverView.AuthentiHash" readonly>
+    <el-input :value="global.attrib.OverView.AuthentiHash" readonly @mouseenter="()=>{ card_AuthentiHash = true; }" @mouseleave="()=>{ card_AuthentiHash = false; }">
     <template #prepend>AuthentiHash</template>
     </el-input>
+
+    <el-card v-show = "card_AuthentiHash" @mouseenter="()=>{ card_AuthentiHash = true; }" @mouseleave="()=>{ card_AuthentiHash = false; }">
+      <template #header><span style="font-style:italic;">AuthentiHash</span></template>
+      <el-input :value="global.attrib.OverView.AuthentiHash" readonly>
+        <template #prepend>MD5</template>
+      </el-input>
+      <el-input :value="global.attrib.OverView.AuthentiHash_sha1" readonly>
+        <template #prepend>SHA1</template>
+      </el-input>
+      <el-input :value="global.attrib.OverView.AuthentiHash_sha256" readonly>
+        <template #prepend>SHA256</template>
+      </el-input>
+      <el-input :value="global.attrib.OverView.AuthentiHash_sha384" readonly>
+        <template #prepend>SHA384</template>
+      </el-input>
+      <el-input :value="global.attrib.OverView.AuthentiHash_sha512" readonly>
+        <template #prepend>SHA512</template>
+      </el-input>
+    </el-card>
         
   </div>
 

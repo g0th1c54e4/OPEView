@@ -17,9 +17,14 @@ export interface OverViewData {
     MD5: string,
     SHA1: string,
     SAH256: string,
+    SAH384: string,
     SAH512: string,
     Checksum: string,
-    AuthentiHash: string,
+    AuthentiHash: string, // md5
+    AuthentiHash_sha1: string, // sha1
+    AuthentiHash_sha256: string, // sha256
+    AuthentiHash_sha384: string, // sha384
+    AuthentiHash_sha512: string, // sha512
     FileType: string,
     FileVersion: string,
     SubSystem: string,

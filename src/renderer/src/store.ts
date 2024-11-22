@@ -18,6 +18,9 @@ export const useGlobalStore = defineStore('global', () => {
       DosHdr:{
         e_magic: "",
         e_lfanew: ""
+      },
+      FileHdr:{
+        
       }
     }
   });
