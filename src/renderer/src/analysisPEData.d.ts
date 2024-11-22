@@ -18,7 +18,7 @@ export interface OverViewData {
     SHA1: string,
     SAH256: string,
     SAH512: string,
-    CRC32: string,
+    Checksum: string,
     AuthentiHash: string,
     FileType: string,
     FileVersion: string,

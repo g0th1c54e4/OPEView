@@ -81,7 +81,7 @@ const global = useGlobalStore()
     <template #prepend>SAH512</template>
     </el-input>
 
-    <el-input :value="global.attrib.OverView.CRC32" readonly>
+    <el-input :value="global.attrib.OverView.Checksum" readonly>
     <template #prepend>CheckSum</template>
     </el-input>
 

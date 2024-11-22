@@ -13,6 +13,12 @@ export const useGlobalStore = defineStore('global', () => {
       FilePath: "",
       Is64bit: "",
       Size: 0,
+    },
+    Headers:{
+      DosHdr:{
+        e_magic: "",
+        e_lfanew: ""
+      }
     }
   });
 

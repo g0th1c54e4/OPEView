@@ -17,7 +17,10 @@ export interface IMAGE_DOS_HEADER {
     e_oemid,   
     e_oeminfo, 
     e_res2,
-    e_lfanew
+    e_lfanew,
+    
+    HeaderSize,
+    StubSize
 }
 
 export interface IMAGE_FILE_HEADER {
