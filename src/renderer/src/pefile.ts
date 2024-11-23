@@ -30,7 +30,9 @@ export interface IMAGE_FILE_HEADER {
     PointerToSymbolTable,
     NumberOfSymbols,
     SizeOfOptionalHeader,
-    Characteristics
+    Characteristics,
+    //----
+    extra_Characteristics_enableBits : number[]
 }
 
 export interface IMAGE_DATA_DIRECTORY {

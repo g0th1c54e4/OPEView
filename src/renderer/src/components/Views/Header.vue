@@ -14,6 +14,25 @@ let page_options = reactive({
   card_fileHdrAttrib_lock: false,
 });
 
+let FileHdrCharacteristics_Arr = [
+  "Relocation info stripped from file",
+  "File is executable",
+  "Line nunbers stripped from file",
+  "Local symbols stripped from file",
+  "Aggressively trim working set",
+  "App can handle > 2gb addresses",
+  "[Don't remove THIS!!!]",
+  "Bytes of machine word are reversed",
+  "32 bit word machine",
+  "Debugging info stripped from file in .DBG file",
+  "If Image is on removable media, copy and run from the swap file",
+  "If Image is on Net, copy and run from the swap file",
+  "System File",
+  "File is a DLL",
+  "File should only be run on a UP machine",
+  "Bytes of machine word are reversed"
+]
+
 </script>
 
 
@@ -130,24 +149,21 @@ let page_options = reactive({
     </div>
 
     <el-card v-show = "page_options.card_fileHdrAttrib || page_options.card_fileHdrAttrib_lock" @mouseenter="()=>{ page_options.card_fileHdrAttrib = true; }" @mouseleave="()=>{ page_options.card_fileHdrAttrib = false; }">
-      <template #header><el-switch v-model="page_options.card_fileHdrAttrib_lock" :active-icon="Lock"></el-switch></template>
-
-      <el-checkbox label="Relocation info stripped from file"></el-checkbox><br>
-      <el-checkbox label="File is executable"></el-checkbox><br>
-      <el-checkbox label="Line nunbers stripped from file"></el-checkbox><br>
-      <el-checkbox label="Local symbols stripped from file"></el-checkbox><br>
-      <el-checkbox label="Aggressively trim working set"></el-checkbox><br>
-      <el-checkbox label="App can handle >2gb addresses"></el-checkbox><br>
-      <el-checkbox label="Bytes of machine word are reversed"></el-checkbox><br>
-      <el-checkbox label="32 bit word machine"></el-checkbox><br>
-      <el-checkbox label="Debugging info stripped from file in .DBG file"></el-checkbox><br>
-      <el-checkbox label="If Image is on removable media, copy and run from the swap file"></el-checkbox><br>
-      <el-checkbox label="If Image is on Net, copy and run from the swap file"></el-checkbox><br>
-      <el-checkbox label="System File"></el-checkbox><br>
-      <el-checkbox label="File is a DLL"></el-checkbox><br>
-      <el-checkbox label="File should only be run on a UP machine"></el-checkbox><br>
-      <el-checkbox label="Bytes of machine word are reversed"></el-checkbox>
-
+      <template #header>
+        <el-switch v-model="page_options.card_fileHdrAttrib_lock" :active-icon="Lock" style="margin-right: 10px;"></el-switch>
+        <!-- <el-select placeholder="Select Language"  style="width: 200px">
+          <el-option label="English" :value="'en'"></el-option>
+          <el-option label="简体中文" :value="'zh_cn'"></el-option>
+          <el-option label="繁體中文" :value="'zh_hk'"></el-option>
+          <el-option label="日本語" :value="'ja'"></el-option>
+          <el-option label="한국어" :value="'kr'"></el-option>
+        </el-select> -->
+      </template>
+      <el-checkbox-group v-model="global.attrib.Headers.FileHdr.extra_Characteristics_enableBits" disabled>
+        <p v-for="(name, i) in FileHdrCharacteristics_Arr">
+          <el-checkbox :label="name" :value="i" v-if="i != 6"></el-checkbox>
+        </p>
+      </el-checkbox-group>
     </el-card>
 
   </div>
