@@ -16,11 +16,13 @@ export const useGlobalStore = defineStore('global', () => {
     },
     Headers:{
       DosHdr:{
-        e_magic: "",
-        e_lfanew: ""
+        
       },
       FileHdr:{
         
+      },
+      OptFileHdr:{
+
       }
     }
   });

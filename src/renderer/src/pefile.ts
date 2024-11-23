@@ -40,7 +40,7 @@ export interface IMAGE_DATA_DIRECTORY {
     Size
 }
 
-export interface IMAGE_OPTIONAL_HEADER32 {
+export interface IMAGE_OPTIONAL_HEADER {
     Magic,
     MajorLinkerVersion,
     MinorLinkerVersion,
@@ -73,39 +73,8 @@ export interface IMAGE_OPTIONAL_HEADER32 {
     LoaderFlags,
     NumberOfRvaAndSizes
     DataDirectory : IMAGE_DATA_DIRECTORY[]
-}
-export interface IMAGE_OPTIONAL_HEADER64 {
-    Magic,
-    MajorLinkerVersion,
-    MinorLinkerVersion,
-    SizeOfCode,
-    SizeOfInitializedData,
-    SizeOfUninitializedData,
-    AddressOfEntryPoint,
-    BaseOfCode,
-    ImageBase,
-    SectionAlignment,
-    FileAlignment,
-    MajorOperatingSystemVersion,
-    MinorOperatingSystemVersion,
-    MajorImageVersion,
-    MinorImageVersion,
-    MajorSubsystemVersion,
-    MinorSubsystemVersion,
-    Win32VersionValue,
-    SizeOfImage,
-    SizeOfHeaders,
-    CheckSum,
-    Subsystem,
-    DllCharacteristics,
-    SizeOfStackReserve,
-    SizeOfStackCommit,
-    SizeOfHeapReserve,
-    SizeOfHeapCommit,
-    LoaderFlags,
-    NumberOfRvaAndSizes,
-    DataDirectory : IMAGE_DATA_DIRECTORY[]
-
+    //----
+    extra_DllCharacteristics_enableBits : number[]
 }
 
 export interface IMAGE_SECTION_HEADER {

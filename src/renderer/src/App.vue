@@ -5,6 +5,7 @@ import Navbar from './components/Navbar.vue'
 import MenuArea from './components/Menu.vue';
 import { ref } from 'vue';
 
+
 import { useGlobalStore, updateStore } from './store'
 const global = useGlobalStore()
 
@@ -54,6 +55,7 @@ async function FileDrop(e){
         <div style="display: flex ;justify-content: center;"><el-divider style="width: 75%; min-width: 500px;"></el-divider></div>
         <el-container>
           <el-aside width="200px"><MenuArea></MenuArea></el-aside>
+          
           <el-main><RouterView></RouterView></el-main>
         </el-container>
       </el-container>
