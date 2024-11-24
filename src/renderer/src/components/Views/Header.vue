@@ -5,45 +5,8 @@ import { useGlobalStore } from '../../store'
 import LineBox from '../Show/LineBox.vue';
 import LineBoxStuMbr from '../Show/LineBoxStuMbr.vue';
 import Divider from '../Show/Divider.vue';
+import { SubSystem_Captions, DllCharacteristics_Captions, FileHdrCharacteristics_Captions, FileHdrMachine_Captions } from '@renderer/captions';
 const global = useGlobalStore()
-
-let FileHdrCharacteristics_Captions = [
-  "Relocation info stripped from file",
-  "File is executable",
-  "Line nunbers stripped from file",
-  "Local symbols stripped from file",
-  "Aggressively trim working set",
-  "App can handle > 2gb addresses",
-  "[Don't remove THIS!!!]",
-  "Bytes of machine word are reversed",
-  "32 bit word machine",
-  "Debugging info stripped from file in .DBG file",
-  "If Image is on removable media, copy and run from the swap file",
-  "If Image is on Net, copy and run from the swap file",
-  "System File",
-  "File is a DLL",
-  "File should only be run on a UP machine",
-  "Bytes of machine word are reversed"
-]
-
-let DllCharacteristics_Captions = [
-  "[Don't remove THIS!!!]",
-  "[Don't remove THIS!!!]",
-  "[Don't remove THIS!!!]",
-  "[Don't remove THIS!!!]",
-  "[Don't remove THIS!!!]",
-  "Image can handle a high entropy 64-bit virtual address space",
-  "DLL can move",
-  "Code Integrity Image",
-  "Image is NX compatible",
-  "Image understands isolation and doesn't want it",
-  "Image does not use SEH.  No SE handler may reside in this image",
-  "Do not bind this image",
-  "Image should execute in an AppContainer",
-  "Driver uses WDM model",
-  "Image supports Control Flow Guard",
-  "Terminal Server Aware"
-]
 
 </script>
 
@@ -105,11 +68,20 @@ let DllCharacteristics_Captions = [
     <LineBox :value="global.attrib.Headers.FileHdr.NumberOfSections.value">区块数</LineBox>
     <LineBox :value="global.attrib.Headers.FileHdr.TimeDateStamp.value">时间戳</LineBox>
     <LineBox :value="global.attrib.Headers.FileHdr.SizeOfOptionalHeader.value">可选头大小</LineBox>
+    <LineBox :value="global.attrib.Headers.FileHdr.Machine.value">目标设备类型
+      <template #Info>
+        <el-checkbox-group v-model="global.attrib.Headers.FileHdr.extra_Machine">
+        <p v-for="(item) in FileHdrMachine_Captions">
+          <el-checkbox :label="item.name" :value="item.value" true-value="?"></el-checkbox>
+        </p>
+        </el-checkbox-group>
+      </template>
+    </LineBox>
     <LineBox :value="global.attrib.Headers.FileHdr.Characteristics.value">文件属性
       <template #Info>
-        <el-checkbox-group v-model="global.attrib.Headers.FileHdr.extra_Characteristics_enableBits" disabled>
+        <el-checkbox-group v-model="global.attrib.Headers.FileHdr.extra_Characteristics_enableBits">
         <p v-for="(name, i) in FileHdrCharacteristics_Captions">
-          <el-checkbox :label="name" :value="i" v-if="i != 6"></el-checkbox>
+          <el-checkbox :label="name" :value="i" true-value="?" v-if="i != 6"></el-checkbox>
         </p>
         </el-checkbox-group>
       </template>
@@ -175,12 +147,20 @@ let DllCharacteristics_Captions = [
     <LineBox :value="global.attrib.Headers.OptFileHdr.SizeOfImage.value">内存中装载总大小</LineBox>
     <LineBox :value="global.attrib.Headers.OptFileHdr.SizeOfHeaders.value">头部总大小</LineBox>
     <LineBox :value="global.attrib.Headers.OptFileHdr.CheckSum.value">映像校验和</LineBox>
-    <LineBox :value="global.attrib.Headers.OptFileHdr.Subsystem.value">文件子系统</LineBox>
+    <LineBox :value="global.attrib.Headers.OptFileHdr.Subsystem.value">文件子系统
+      <template #Info>
+        <el-checkbox-group v-model="global.attrib.Headers.OptFileHdr.extra_Subsystem">
+        <p v-for="(name, i) in SubSystem_Captions">
+          <el-checkbox :label="name" :value="i" true-value="?"></el-checkbox>
+        </p>
+        </el-checkbox-group>
+      </template>
+    </LineBox>
     <LineBox :value="global.attrib.Headers.OptFileHdr.DllCharacteristics.value">Dll属性
       <template #Info>
-        <el-checkbox-group v-model="global.attrib.Headers.OptFileHdr.extra_DllCharacteristics_enableBits" disabled>
+        <el-checkbox-group v-model="global.attrib.Headers.OptFileHdr.extra_DllCharacteristics_enableBits">
         <p v-for="(name, i) in DllCharacteristics_Captions">
-          <el-checkbox :label="name" :value="i" v-if="i > 4"></el-checkbox>
+          <el-checkbox :label="name" :value="i" true-value="?" v-if="i > 4"></el-checkbox>
         </p>
         </el-checkbox-group>
       </template>

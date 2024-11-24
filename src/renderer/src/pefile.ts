@@ -41,6 +41,7 @@ export interface IMAGE_FILE_HEADER {
     Characteristics : StructMember,
     //----
     extra_Characteristics_enableBits : number[]
+    extra_Machine : number[]
 }
 
 export interface IMAGE_DATA_DIRECTORY {
@@ -83,6 +84,7 @@ export interface IMAGE_OPTIONAL_HEADER {
     DataDirectory : IMAGE_DATA_DIRECTORY[],
     //----
     extra_DllCharacteristics_enableBits : number[]
+    extra_Subsystem : number[]
 }
 
 export interface IMAGE_SECTION_HEADER {
