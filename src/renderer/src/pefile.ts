@@ -1,92 +1,100 @@
+export interface StructMember{
+    value: string, // Hex
+    typeBytes: number,
+    typeName: string,
+    offset: number, // with Struction
+    offsetFile: number // with File Begin Position
+}
+
 export interface IMAGE_DOS_HEADER {
-    e_magic,
-    e_cblp,    
-    e_cp,      
-    e_crlc,    
-    e_cparhdr, 
-    e_minalloc,
-    e_maxalloc,
-    e_ss,      
-    e_sp,      
-    e_csum,    
-    e_ip,      
-    e_cs,      
-    e_lfarlc,  
-    e_ovno,    
-    e_res,  
-    e_oemid,   
-    e_oeminfo, 
-    e_res2,
-    e_lfanew,
+    e_magic : StructMember,
+    e_cblp : StructMember,    
+    e_cp : StructMember,      
+    e_crlc : StructMember,    
+    e_cparhdr : StructMember, 
+    e_minalloc : StructMember,
+    e_maxalloc : StructMember,
+    e_ss : StructMember,      
+    e_sp : StructMember,      
+    e_csum : StructMember,    
+    e_ip : StructMember,      
+    e_cs : StructMember,      
+    e_lfarlc : StructMember,  
+    e_ovno : StructMember,    
+    e_res : StructMember,
+    e_oemid : StructMember,
+    e_oeminfo : StructMember,
+    e_res2 : StructMember,
+    e_lfanew : StructMember,
     
     HeaderSize,
     StubSize
 }
 
 export interface IMAGE_FILE_HEADER {
-    Machine,
-    NumberOfSections,
-    TimeDateStamp,
-    PointerToSymbolTable,
-    NumberOfSymbols,
-    SizeOfOptionalHeader,
-    Characteristics,
+    Machine : StructMember,
+    NumberOfSections : StructMember,
+    TimeDateStamp : StructMember,
+    PointerToSymbolTable : StructMember,
+    NumberOfSymbols : StructMember,
+    SizeOfOptionalHeader : StructMember,
+    Characteristics : StructMember,
     //----
     extra_Characteristics_enableBits : number[]
 }
 
 export interface IMAGE_DATA_DIRECTORY {
-    VirtualAddress,
-    Size
+    VirtualAddress : StructMember,
+    Size : StructMember
 }
 
 export interface IMAGE_OPTIONAL_HEADER {
-    Magic,
-    MajorLinkerVersion,
-    MinorLinkerVersion,
-    SizeOfCode,
-    SizeOfInitializedData,
-    SizeOfUninitializedData,
-    AddressOfEntryPoint,
-    BaseOfCode,
-    BaseOfData,
+    Magic : StructMember,
+    MajorLinkerVersion : StructMember,
+    MinorLinkerVersion : StructMember,
+    SizeOfCode : StructMember,
+    SizeOfInitializedData : StructMember,
+    SizeOfUninitializedData : StructMember,
+    AddressOfEntryPoint : StructMember,
+    BaseOfCode : StructMember,
+    BaseOfData : StructMember,
 
-    ImageBase,
-    SectionAlignment,
-    FileAlignment,
-    MajorOperatingSystemVersion,
-    MinorOperatingSystemVersion,
-    MajorImageVersion,
-    MinorImageVersion,
-    MajorSubsystemVersion,
-    MinorSubsystemVersion,
-    Win32VersionValue,
-    SizeOfImage,
-    SizeOfHeaders,
-    CheckSum,
-    Subsystem,
-    DllCharacteristics,
-    SizeOfStackReserve,
-    SizeOfStackCommit,
-    SizeOfHeapReserve,
-    SizeOfHeapCommit,
-    LoaderFlags,
-    NumberOfRvaAndSizes
-    DataDirectory : IMAGE_DATA_DIRECTORY[]
+    ImageBase : StructMember,
+    SectionAlignment : StructMember,
+    FileAlignment : StructMember,
+    MajorOperatingSystemVersion : StructMember,
+    MinorOperatingSystemVersion : StructMember,
+    MajorImageVersion : StructMember,
+    MinorImageVersion : StructMember,
+    MajorSubsystemVersion : StructMember,
+    MinorSubsystemVersion : StructMember,
+    Win32VersionValue : StructMember,
+    SizeOfImage : StructMember,
+    SizeOfHeaders : StructMember,
+    CheckSum : StructMember,
+    Subsystem : StructMember,
+    DllCharacteristics : StructMember,
+    SizeOfStackReserve : StructMember,
+    SizeOfStackCommit : StructMember,
+    SizeOfHeapReserve : StructMember,
+    SizeOfHeapCommit : StructMember,
+    LoaderFlags : StructMember,
+    NumberOfRvaAndSizes : StructMember,
+    DataDirectory : IMAGE_DATA_DIRECTORY[],
     //----
     extra_DllCharacteristics_enableBits : number[]
 }
 
 export interface IMAGE_SECTION_HEADER {
-    Name : string,
-    PhysicalAddress,
-    VirtualSize,
-    VirtualAddress,
-    SizeOfRawData,
-    PointerToRawData,
-    PointerToRelocations,
-    PointerToLinenumbers,
-    NumberOfRelocations,
-    NumberOfLinenumbers,
-    Characteristics
+    Name : StructMember,
+    PhysicalAddress : StructMember,
+    VirtualSize : StructMember,
+    VirtualAddress : StructMember,
+    SizeOfRawData : StructMember,
+    PointerToRawData : StructMember,
+    PointerToRelocations : StructMember,
+    PointerToLinenumbers : StructMember,
+    NumberOfRelocations : StructMember,
+    NumberOfLinenumbers : StructMember,
+    Characteristics : StructMember
 }

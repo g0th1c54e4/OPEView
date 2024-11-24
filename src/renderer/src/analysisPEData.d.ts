@@ -1,7 +1,5 @@
 import { IMAGE_DATA_DIRECTORY, IMAGE_DOS_HEADER, IMAGE_FILE_HEADER, IMAGE_OPTIONAL_HEADER, IMAGE_SECTION_HEADER } from "./pefile"
 
-type HexString = string
-
 export interface OverViewData {
     FilePath: string,
   
@@ -10,10 +8,10 @@ export interface OverViewData {
     Is64bit: string,
     CreateData: Date,
     EntrySectionName: string,
-    EntryAddrRVA: HexString,
-    EntryAddrFOA: HexString,
+    EntryAddrRVA: string,
+    EntryAddrFOA: string,
     SectionNum: number,
-    ImageBase: HexString,
+    ImageBase: string,
     MD5: string,
     SHA1: string,
     SAH256: string,

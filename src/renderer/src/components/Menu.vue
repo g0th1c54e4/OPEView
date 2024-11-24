@@ -1,9 +1,11 @@
 <script setup lang="ts">
+import { useGlobalStore } from '../store'
+const global = useGlobalStore()
 </script>
 
 <template>
     <el-menu :router="true">
-        <el-sub-menu index="/StaticInfo">
+        <el-sub-menu index="/StaticInfo" :disabled="global.attrib.OverView.FilePath == ''">
             <template #title>
                 <span>程序静态信息</span>
             </template>
@@ -26,7 +28,7 @@
 
       </el-sub-menu>
 
-      <el-sub-menu index="/Analysis">
+      <el-sub-menu index="/Analysis" :disabled="global.attrib.OverView.FilePath == ''">
             <template #title>
                 <span>解析</span>
             </template>

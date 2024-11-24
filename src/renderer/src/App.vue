@@ -49,17 +49,17 @@ async function FileDrop(e){
       </template>
     </el-dialog>
     
-    <el-scrollbar height="97vh">
+      <el-scrollbar max-height="97vh">
       <el-container>
         <el-header class="Header"><Navbar></Navbar></el-header>
         <div style="display: flex ;justify-content: center;"><el-divider style="width: 75%; min-width: 500px;"></el-divider></div>
         <el-container>
           <el-aside width="200px"><MenuArea></MenuArea></el-aside>
-          
           <el-main><RouterView></RouterView></el-main>
         </el-container>
       </el-container>
-    </el-scrollbar>
+      </el-scrollbar>
+
   </div>
 
 </template>

@@ -2,7 +2,8 @@
 
 import { useGlobalStore } from '../../store'
 // import InfoPopover from '../Show/InfoPopover.vue';
-import EditBox from '../Show/EditBox.vue';
+import LineBox from '../Show/LineBox.vue';
+import LineBoxStuMbr from '../Show/LineBoxStuMbr.vue';
 import Divider from '../Show/Divider.vue';
 const global = useGlobalStore()
 
@@ -64,47 +65,47 @@ let DllCharacteristics_Captions = [
 
   <Divider title="Image DOS Header">
     <template #Info>
-      <EditBox :value="global.attrib.Headers.DosHdr.e_magic">e_magic</EditBox>
-      <EditBox :value="global.attrib.Headers.DosHdr.e_cblp">e_cblp</EditBox>
-      <EditBox :value="global.attrib.Headers.DosHdr.e_cp">e_cp</EditBox>
-      <EditBox :value="global.attrib.Headers.DosHdr.e_crlc">e_crlc</EditBox>
-      <EditBox :value="global.attrib.Headers.DosHdr.e_cparhdr">e_cparhdr</EditBox>
-      <EditBox :value="global.attrib.Headers.DosHdr.e_minalloc">e_minalloc</EditBox>
-      <EditBox :value="global.attrib.Headers.DosHdr.e_maxalloc">e_maxalloc</EditBox>
-      <EditBox :value="global.attrib.Headers.DosHdr.e_ss">e_ss</EditBox>
-      <EditBox :value="global.attrib.Headers.DosHdr.e_sp">e_sp</EditBox>
-      <EditBox :value="global.attrib.Headers.DosHdr.e_csum">e_csum</EditBox>
-      <EditBox :value="global.attrib.Headers.DosHdr.e_ip">e_ip</EditBox>
-      <EditBox :value="global.attrib.Headers.DosHdr.e_cs">e_cs</EditBox>
-      <EditBox :value="global.attrib.Headers.DosHdr.e_lfarlc">e_lfarlc</EditBox>
-      <EditBox :value="global.attrib.Headers.DosHdr.e_ovno">e_ovno</EditBox>
-      <EditBox :value="global.attrib.Headers.DosHdr.e_res">e_res</EditBox>
-      <EditBox :value="global.attrib.Headers.DosHdr.e_oemid">e_oemid</EditBox>
-      <EditBox :value="global.attrib.Headers.DosHdr.e_oeminfo">e_oeminfo</EditBox>
-      <EditBox :value="global.attrib.Headers.DosHdr.e_res2">e_res2</EditBox>
-      <EditBox :value="global.attrib.Headers.DosHdr.e_lfanew">e_lfanew</EditBox>
+      <LineBoxStuMbr :StuMbr="global.attrib.Headers.DosHdr.e_magic">e_magic</LineBoxStuMbr>
+      <LineBoxStuMbr :StuMbr="global.attrib.Headers.DosHdr.e_cblp">e_cblp</LineBoxStuMbr>
+      <LineBoxStuMbr :StuMbr="global.attrib.Headers.DosHdr.e_cp">e_cp</LineBoxStuMbr>
+      <LineBoxStuMbr :StuMbr="global.attrib.Headers.DosHdr.e_crlc">e_crlc</LineBoxStuMbr>
+      <LineBoxStuMbr :StuMbr="global.attrib.Headers.DosHdr.e_cparhdr">e_cparhdr</LineBoxStuMbr>
+      <LineBoxStuMbr :StuMbr="global.attrib.Headers.DosHdr.e_minalloc">e_minalloc</LineBoxStuMbr>
+      <LineBoxStuMbr :StuMbr="global.attrib.Headers.DosHdr.e_maxalloc">e_maxalloc</LineBoxStuMbr>
+      <LineBoxStuMbr :StuMbr="global.attrib.Headers.DosHdr.e_ss">e_ss</LineBoxStuMbr>
+      <LineBoxStuMbr :StuMbr="global.attrib.Headers.DosHdr.e_sp">e_sp</LineBoxStuMbr>
+      <LineBoxStuMbr :StuMbr="global.attrib.Headers.DosHdr.e_csum">e_csum</LineBoxStuMbr>
+      <LineBoxStuMbr :StuMbr="global.attrib.Headers.DosHdr.e_ip">e_ip</LineBoxStuMbr>
+      <LineBoxStuMbr :StuMbr="global.attrib.Headers.DosHdr.e_cs">e_cs</LineBoxStuMbr>
+      <LineBoxStuMbr :StuMbr="global.attrib.Headers.DosHdr.e_lfarlc">e_lfarlc</LineBoxStuMbr>
+      <LineBoxStuMbr :StuMbr="global.attrib.Headers.DosHdr.e_ovno">e_ovno</LineBoxStuMbr>
+      <LineBoxStuMbr :StuMbr="global.attrib.Headers.DosHdr.e_res">e_res</LineBoxStuMbr>
+      <LineBoxStuMbr :StuMbr="global.attrib.Headers.DosHdr.e_oemid">e_oemid</LineBoxStuMbr>
+      <LineBoxStuMbr :StuMbr="global.attrib.Headers.DosHdr.e_oeminfo">e_oeminfo</LineBoxStuMbr>
+      <LineBoxStuMbr :StuMbr="global.attrib.Headers.DosHdr.e_res2">e_res2</LineBoxStuMbr>
+      <LineBoxStuMbr :StuMbr="global.attrib.Headers.DosHdr.e_lfanew">e_lfanew</LineBoxStuMbr>
     </template>
   </Divider>
   <div class="box">
-    <EditBox :value="global.attrib.Headers.DosHdr.HeaderSize">头尺寸</EditBox>
-    <EditBox :value="global.attrib.Headers.DosHdr.StubSize">Stub</EditBox>
+    <LineBox :value="global.attrib.Headers.DosHdr.HeaderSize">头尺寸</LineBox>
+    <LineBox :value="global.attrib.Headers.DosHdr.StubSize">Stub</LineBox>
   </div>
 
   <Divider title="Image File Header">
     <template #Info>
-      <EditBox :value="global.attrib.Headers.FileHdr.Machine">Machine</EditBox>
-      <EditBox :value="global.attrib.Headers.FileHdr.NumberOfSections">NumberOfSections</EditBox>
-      <EditBox :value="global.attrib.Headers.FileHdr.TimeDateStamp">TimeDateStamp</EditBox>
-      <EditBox :value="global.attrib.Headers.FileHdr.NumberOfSymbols">NumberOfSymbols</EditBox>
-      <EditBox :value="global.attrib.Headers.FileHdr.SizeOfOptionalHeader">SizeOfOptionalHeader</EditBox>
-      <EditBox :value="global.attrib.Headers.FileHdr.Characteristics" infoPlacement="bottom">Characteristics</EditBox>
+      <LineBoxStuMbr :StuMbr="global.attrib.Headers.FileHdr.Machine">Machine</LineBoxStuMbr>
+      <LineBoxStuMbr :StuMbr="global.attrib.Headers.FileHdr.NumberOfSections">NumberOfSections</LineBoxStuMbr>
+      <LineBoxStuMbr :StuMbr="global.attrib.Headers.FileHdr.TimeDateStamp">TimeDateStamp</LineBoxStuMbr>
+      <LineBoxStuMbr :StuMbr="global.attrib.Headers.FileHdr.NumberOfSymbols">NumberOfSymbols</LineBoxStuMbr>
+      <LineBoxStuMbr :StuMbr="global.attrib.Headers.FileHdr.SizeOfOptionalHeader">SizeOfOptionalHeader</LineBoxStuMbr>
+      <LineBoxStuMbr :StuMbr="global.attrib.Headers.FileHdr.Characteristics">Characteristics</LineBoxStuMbr>
     </template>
   </Divider>
   <div class="box">
-    <EditBox :value="global.attrib.Headers.FileHdr.NumberOfSections">区块数</EditBox>
-    <EditBox :value="global.attrib.Headers.FileHdr.TimeDateStamp">时间戳</EditBox>
-    <EditBox :value="global.attrib.Headers.FileHdr.SizeOfOptionalHeader">可选头大小</EditBox>
-    <EditBox :value="global.attrib.Headers.FileHdr.Characteristics">文件属性
+    <LineBox :value="global.attrib.Headers.FileHdr.NumberOfSections.value">区块数</LineBox>
+    <LineBox :value="global.attrib.Headers.FileHdr.TimeDateStamp.value">时间戳</LineBox>
+    <LineBox :value="global.attrib.Headers.FileHdr.SizeOfOptionalHeader.value">可选头大小</LineBox>
+    <LineBox :value="global.attrib.Headers.FileHdr.Characteristics.value">文件属性
       <template #Info>
         <el-checkbox-group v-model="global.attrib.Headers.FileHdr.extra_Characteristics_enableBits" disabled>
         <p v-for="(name, i) in FileHdrCharacteristics_Captions">
@@ -112,70 +113,70 @@ let DllCharacteristics_Captions = [
         </p>
         </el-checkbox-group>
       </template>
-    </EditBox>
+    </LineBox>
   </div>
 
   <Divider title="Image Optional File Header">
     <template #Info>
       
-      <EditBox :value="global.attrib.Headers.OptFileHdr.Magic">Magic</EditBox>
-      <EditBox :value="global.attrib.Headers.OptFileHdr.MajorLinkerVersion">MajorLinkerVersion</EditBox>
-      <EditBox :value="global.attrib.Headers.OptFileHdr.MinorLinkerVersion">MinorLinkerVersion</EditBox>
-      <EditBox :value="global.attrib.Headers.OptFileHdr.SizeOfCode">SizeOfCode</EditBox>
-      <EditBox :value="global.attrib.Headers.OptFileHdr.SizeOfInitializedData">SizeOfInitializedData</EditBox>
-      <EditBox :value="global.attrib.Headers.OptFileHdr.SizeOfUninitializedData">SizeOfUninitializedData</EditBox>
-      <EditBox :value="global.attrib.Headers.OptFileHdr.AddressOfEntryPoint">AddressOfEntryPoint</EditBox>
-      <EditBox :value="global.attrib.Headers.OptFileHdr.BaseOfCode">BaseOfCode</EditBox>
-      <EditBox :value="global.attrib.Headers.OptFileHdr.BaseOfData">BaseOfData</EditBox>
-      <EditBox :value="global.attrib.Headers.OptFileHdr.ImageBase">ImageBase</EditBox>
-      <EditBox :value="global.attrib.Headers.OptFileHdr.SectionAlignment">SectionAlignment</EditBox>
-      <EditBox :value="global.attrib.Headers.OptFileHdr.FileAlignment">FileAlignment</EditBox>
-      <EditBox :value="global.attrib.Headers.OptFileHdr.MajorOperatingSystemVersion">MajorOperatingSystemVersion</EditBox>
-      <EditBox :value="global.attrib.Headers.OptFileHdr.MinorOperatingSystemVersion">MinorOperatingSystemVersion</EditBox>
-      <EditBox :value="global.attrib.Headers.OptFileHdr.MajorImageVersion">MajorImageVersion</EditBox>
-      <EditBox :value="global.attrib.Headers.OptFileHdr.MinorImageVersion">MinorImageVersion</EditBox>
-      <EditBox :value="global.attrib.Headers.OptFileHdr.MajorSubsystemVersion">MajorSubsystemVersion</EditBox>
-      <EditBox :value="global.attrib.Headers.OptFileHdr.MinorSubsystemVersion">MinorSubsystemVersion</EditBox>
-      <EditBox :value="global.attrib.Headers.OptFileHdr.Win32VersionValue">Win32VersionValue</EditBox>
-      <EditBox :value="global.attrib.Headers.OptFileHdr.SizeOfImage">SizeOfImage</EditBox>
-      <EditBox :value="global.attrib.Headers.OptFileHdr.SizeOfHeaders">SizeOfHeaders</EditBox>
-      <EditBox :value="global.attrib.Headers.OptFileHdr.CheckSum">CheckSum</EditBox>
-      <EditBox :value="global.attrib.Headers.OptFileHdr.Subsystem">Subsystem</EditBox>
-      <EditBox :value="global.attrib.Headers.OptFileHdr.DllCharacteristics">DllCharacteristics</EditBox>
-      <EditBox :value="global.attrib.Headers.OptFileHdr.SizeOfStackReserve">SizeOfStackReserve</EditBox>
-      <EditBox :value="global.attrib.Headers.OptFileHdr.SizeOfStackCommit">SizeOfStackCommit</EditBox>
-      <EditBox :value="global.attrib.Headers.OptFileHdr.SizeOfHeapReserve">SizeOfHeapReserve</EditBox>
-      <EditBox :value="global.attrib.Headers.OptFileHdr.SizeOfHeapCommit">SizeOfHeapCommit</EditBox>
-      <EditBox :value="global.attrib.Headers.OptFileHdr.LoaderFlags">LoaderFlags</EditBox>
-      <EditBox :value="global.attrib.Headers.OptFileHdr.NumberOfRvaAndSizes">NumberOfRvaAndSizes</EditBox>
+      <LineBoxStuMbr :StuMbr="global.attrib.Headers.OptFileHdr.Magic">Magic</LineBoxStuMbr>
+      <LineBoxStuMbr :StuMbr="global.attrib.Headers.OptFileHdr.MajorLinkerVersion">MajorLinkerVersion</LineBoxStuMbr>
+      <LineBoxStuMbr :StuMbr="global.attrib.Headers.OptFileHdr.MinorLinkerVersion">MinorLinkerVersion</LineBoxStuMbr>
+      <LineBoxStuMbr :StuMbr="global.attrib.Headers.OptFileHdr.SizeOfCode">SizeOfCode</LineBoxStuMbr>
+      <LineBoxStuMbr :StuMbr="global.attrib.Headers.OptFileHdr.SizeOfInitializedData">SizeOfInitializedData</LineBoxStuMbr>
+      <LineBoxStuMbr :StuMbr="global.attrib.Headers.OptFileHdr.SizeOfUninitializedData">SizeOfUninitializedData</LineBoxStuMbr>
+      <LineBoxStuMbr :StuMbr="global.attrib.Headers.OptFileHdr.AddressOfEntryPoint">AddressOfEntryPoint</LineBoxStuMbr>
+      <LineBoxStuMbr :StuMbr="global.attrib.Headers.OptFileHdr.BaseOfCode">BaseOfCode</LineBoxStuMbr>
+      <LineBoxStuMbr :StuMbr="global.attrib.Headers.OptFileHdr.BaseOfData" v-if="(global.attrib.OverView.Is64bit == '32')">BaseOfData</LineBoxStuMbr>
+      <LineBoxStuMbr :StuMbr="global.attrib.Headers.OptFileHdr.ImageBase">ImageBase</LineBoxStuMbr>
+      <LineBoxStuMbr :StuMbr="global.attrib.Headers.OptFileHdr.SectionAlignment">SectionAlignment</LineBoxStuMbr>
+      <LineBoxStuMbr :StuMbr="global.attrib.Headers.OptFileHdr.FileAlignment">FileAlignment</LineBoxStuMbr>
+      <LineBoxStuMbr :StuMbr="global.attrib.Headers.OptFileHdr.MajorOperatingSystemVersion">MajorOperatingSystemVersion</LineBoxStuMbr>
+      <LineBoxStuMbr :StuMbr="global.attrib.Headers.OptFileHdr.MinorOperatingSystemVersion">MinorOperatingSystemVersion</LineBoxStuMbr>
+      <LineBoxStuMbr :StuMbr="global.attrib.Headers.OptFileHdr.MajorImageVersion">MajorImageVersion</LineBoxStuMbr>
+      <LineBoxStuMbr :StuMbr="global.attrib.Headers.OptFileHdr.MinorImageVersion">MinorImageVersion</LineBoxStuMbr>
+      <LineBoxStuMbr :StuMbr="global.attrib.Headers.OptFileHdr.MajorSubsystemVersion">MajorSubsystemVersion</LineBoxStuMbr>
+      <LineBoxStuMbr :StuMbr="global.attrib.Headers.OptFileHdr.MinorSubsystemVersion">MinorSubsystemVersion</LineBoxStuMbr>
+      <LineBoxStuMbr :StuMbr="global.attrib.Headers.OptFileHdr.Win32VersionValue">Win32VersionValue</LineBoxStuMbr>
+      <LineBoxStuMbr :StuMbr="global.attrib.Headers.OptFileHdr.SizeOfImage">SizeOfImage</LineBoxStuMbr>
+      <LineBoxStuMbr :StuMbr="global.attrib.Headers.OptFileHdr.SizeOfHeaders">SizeOfHeaders</LineBoxStuMbr>
+      <LineBoxStuMbr :StuMbr="global.attrib.Headers.OptFileHdr.CheckSum">CheckSum</LineBoxStuMbr>
+      <LineBoxStuMbr :StuMbr="global.attrib.Headers.OptFileHdr.Subsystem">Subsystem</LineBoxStuMbr>
+      <LineBoxStuMbr :StuMbr="global.attrib.Headers.OptFileHdr.DllCharacteristics">DllCharacteristics</LineBoxStuMbr>
+      <LineBoxStuMbr :StuMbr="global.attrib.Headers.OptFileHdr.SizeOfStackReserve">SizeOfStackReserve</LineBoxStuMbr>
+      <LineBoxStuMbr :StuMbr="global.attrib.Headers.OptFileHdr.SizeOfStackCommit">SizeOfStackCommit</LineBoxStuMbr>
+      <LineBoxStuMbr :StuMbr="global.attrib.Headers.OptFileHdr.SizeOfHeapReserve">SizeOfHeapReserve</LineBoxStuMbr>
+      <LineBoxStuMbr :StuMbr="global.attrib.Headers.OptFileHdr.SizeOfHeapCommit">SizeOfHeapCommit</LineBoxStuMbr>
+      <LineBoxStuMbr :StuMbr="global.attrib.Headers.OptFileHdr.LoaderFlags">LoaderFlags</LineBoxStuMbr>
+      <LineBoxStuMbr :StuMbr="global.attrib.Headers.OptFileHdr.NumberOfRvaAndSizes">NumberOfRvaAndSizes</LineBoxStuMbr>
 
     </template>
   </Divider>
   <div class="box">
-    <EditBox :value="global.attrib.Headers.OptFileHdr.MajorLinkerVersion+'.'+global.attrib.Headers.OptFileHdr.MinorLinkerVersion">
-      链接器版本</EditBox>
-    <EditBox :value="global.attrib.Headers.OptFileHdr.SizeOfCode">代码段大小</EditBox>
-    <EditBox :value="global.attrib.Headers.OptFileHdr.SizeOfInitializedData">初始化数据大小</EditBox>
-    <EditBox :value="global.attrib.Headers.OptFileHdr.SizeOfUninitializedData">未初始化数据大小</EditBox>
-    <EditBox :value="global.attrib.Headers.OptFileHdr.AddressOfEntryPoint">程序入口</EditBox>
-    <EditBox :value="global.attrib.Headers.OptFileHdr.BaseOfCode">代码段入口</EditBox>
-    <EditBox :value="(global.attrib.OverView.Is64bit == '32') ? (global.attrib.Headers.OptFileHdr.BaseOfData) : ''">
-      数据段入口</EditBox>
-    <EditBox :value="global.attrib.Headers.OptFileHdr.ImageBase">程序默认基址</EditBox>
-    <EditBox :value="global.attrib.Headers.OptFileHdr.SectionAlignment">区块对齐值</EditBox>
-    <EditBox :value="global.attrib.Headers.OptFileHdr.FileAlignment">文件对齐值</EditBox>
-    <EditBox :value="global.attrib.Headers.OptFileHdr.MajorOperatingSystemVersion+'.'+global.attrib.Headers.OptFileHdr.MinorOperatingSystemVersion">
-      操作系统版本号</EditBox>
-    <EditBox :value="global.attrib.Headers.OptFileHdr.MajorImageVersion+'.'+global.attrib.Headers.OptFileHdr.MinorImageVersion">
-      自定义版本号</EditBox>
-    <EditBox :value="global.attrib.Headers.OptFileHdr.MajorSubsystemVersion+'.'+global.attrib.Headers.OptFileHdr.MinorSubsystemVersion">
-      子系统版本号</EditBox>
-    <EditBox :value="global.attrib.Headers.OptFileHdr.Win32VersionValue">Win32VersionValue</EditBox>
-    <EditBox :value="global.attrib.Headers.OptFileHdr.SizeOfImage">内存中装载总大小</EditBox>
-    <EditBox :value="global.attrib.Headers.OptFileHdr.SizeOfHeaders">头部总大小</EditBox>
-    <EditBox :value="global.attrib.Headers.OptFileHdr.CheckSum">映像校验和</EditBox>
-    <EditBox :value="global.attrib.Headers.OptFileHdr.Subsystem">文件子系统</EditBox>
-    <EditBox :value="global.attrib.Headers.OptFileHdr.DllCharacteristics">Dll属性
+    <LineBox :value="global.attrib.Headers.OptFileHdr.MajorLinkerVersion.value+'.'+global.attrib.Headers.OptFileHdr.MinorLinkerVersion.value">
+      链接器版本</LineBox>
+    <LineBox :value="global.attrib.Headers.OptFileHdr.SizeOfCode.value">代码段大小</LineBox>
+    <LineBox :value="global.attrib.Headers.OptFileHdr.SizeOfInitializedData.value">初始化数据大小</LineBox>
+    <LineBox :value="global.attrib.Headers.OptFileHdr.SizeOfUninitializedData.value">未初始化数据大小</LineBox>
+    <LineBox :value="global.attrib.Headers.OptFileHdr.AddressOfEntryPoint.value">程序入口</LineBox>
+    <LineBox :value="global.attrib.Headers.OptFileHdr.BaseOfCode.value">代码段入口</LineBox>
+    <LineBox :value="(global.attrib.OverView.Is64bit == '32') ? (global.attrib.Headers.OptFileHdr.BaseOfData.value) : ''">
+      数据段入口</LineBox>
+    <LineBox :value="global.attrib.Headers.OptFileHdr.ImageBase.value">程序默认基址</LineBox>
+    <LineBox :value="global.attrib.Headers.OptFileHdr.SectionAlignment.value">区块对齐值</LineBox>
+    <LineBox :value="global.attrib.Headers.OptFileHdr.FileAlignment.value">文件对齐值</LineBox>
+    <LineBox :value="global.attrib.Headers.OptFileHdr.MajorOperatingSystemVersion.value+'.'+global.attrib.Headers.OptFileHdr.MinorOperatingSystemVersion.value">
+      操作系统版本号</LineBox>
+    <LineBox :value="global.attrib.Headers.OptFileHdr.MajorImageVersion.value+'.'+global.attrib.Headers.OptFileHdr.MinorImageVersion.value">
+      自定义版本号</LineBox>
+    <LineBox :value="global.attrib.Headers.OptFileHdr.MajorSubsystemVersion.value+'.'+global.attrib.Headers.OptFileHdr.MinorSubsystemVersion.value">
+      子系统版本号</LineBox>
+    <LineBox :value="global.attrib.Headers.OptFileHdr.Win32VersionValue.value">Win32VersionValue</LineBox>
+    <LineBox :value="global.attrib.Headers.OptFileHdr.SizeOfImage.value">内存中装载总大小</LineBox>
+    <LineBox :value="global.attrib.Headers.OptFileHdr.SizeOfHeaders.value">头部总大小</LineBox>
+    <LineBox :value="global.attrib.Headers.OptFileHdr.CheckSum.value">映像校验和</LineBox>
+    <LineBox :value="global.attrib.Headers.OptFileHdr.Subsystem.value">文件子系统</LineBox>
+    <LineBox :value="global.attrib.Headers.OptFileHdr.DllCharacteristics.value">Dll属性
       <template #Info>
         <el-checkbox-group v-model="global.attrib.Headers.OptFileHdr.extra_DllCharacteristics_enableBits" disabled>
         <p v-for="(name, i) in DllCharacteristics_Captions">
@@ -183,9 +184,9 @@ let DllCharacteristics_Captions = [
         </p>
         </el-checkbox-group>
       </template>
-    </EditBox>
-    <EditBox :value="global.attrib.Headers.OptFileHdr.LoaderFlags">LoaderFlags</EditBox>
-    <EditBox :value="global.attrib.Headers.OptFileHdr.NumberOfRvaAndSizes">NumberOfRvaAndSizes</EditBox>
+    </LineBox>
+    <LineBox :value="global.attrib.Headers.OptFileHdr.LoaderFlags.value">LoaderFlags</LineBox>
+    <LineBox :value="global.attrib.Headers.OptFileHdr.NumberOfRvaAndSizes.value">NumberOfRvaAndSizes</LineBox>
   </div>
 
 </template>
