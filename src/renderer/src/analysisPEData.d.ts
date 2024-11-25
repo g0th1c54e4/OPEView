@@ -5,10 +5,8 @@ export interface OverViewData {
   
     Size: number,
     IsPEFile: boolean,
-    Is64bit: string,
+    Is64bit: boolean,
     CreateData: Date,
-    EntrySectionName: string,
-    EntryAddrFOA: string,
     MD5: string,
     SHA1: string,
     SAH256: string,
@@ -20,9 +18,7 @@ export interface OverViewData {
     AuthentiHash_sha256: string, // sha256
     AuthentiHash_sha384: string, // sha384
     AuthentiHash_sha512: string, // sha512
-    FileType: string,
     FileVersion: string,
-    SubSystem: string,
     ICON: string,
   }
   

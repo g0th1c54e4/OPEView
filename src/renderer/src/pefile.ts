@@ -39,14 +39,11 @@ export interface IMAGE_FILE_HEADER {
     NumberOfSymbols : StructMember,
     SizeOfOptionalHeader : StructMember,
     Characteristics : StructMember,
-    //----
-    extra_Characteristics_enableBits : number[]
-    extra_Machine : number[]
 }
 
 export interface IMAGE_DATA_DIRECTORY {
     VirtualAddress : StructMember,
-    Size : StructMember
+    Size : StructMember,
 }
 
 export interface IMAGE_OPTIONAL_HEADER {
@@ -100,3 +97,5 @@ export interface IMAGE_SECTION_HEADER {
     NumberOfLinenumbers : StructMember,
     Characteristics : StructMember
 }
+
+

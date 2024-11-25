@@ -6,7 +6,38 @@ import LineBox from '../Show/LineBox.vue';
 import LineBoxStuMbr from '../Show/LineBoxStuMbr.vue';
 import Divider from '../Show/Divider.vue';
 import { SubSystem_Captions, DllCharacteristics_Captions, FileHdrCharacteristics_Captions, FileHdrMachine_Captions } from '@renderer/captions';
+import { reactive, watch } from 'vue';
+import { hexToNumber } from '@renderer/Utils/util';
 const global = useGlobalStore()
+
+interface PageInfoType{
+  Characteristics_enable: number[]
+  Machine_enable: number[],
+  
+}
+
+const PageInfo : PageInfoType = reactive({
+  Characteristics_enable: [],
+  Machine_enable: []
+})
+
+watch(
+  () => global.attrib.Headers,
+  (_Headers) => {
+    PageInfo.Characteristics_enable.splice(0, PageInfo.Characteristics_enable.length);
+    PageInfo.Machine_enable.splice(0, PageInfo.Machine_enable.length);
+    
+    for (let i = 0; i < 16; i++) { // 有BUG
+      if (i == 6) { continue } // 跳过 0x40
+      if ((hexToNumber(global.attrib.Headers.FileHdr.Characteristics.value) & (1 << i)) != 0) {
+        PageInfo.Characteristics_enable.push(i)
+		  }
+      
+    }
+
+    PageInfo.Machine_enable.push(hexToNumber(global.attrib.Headers.FileHdr.Machine.value))
+  }, {immediate: true}
+)
 
 </script>
 
@@ -70,7 +101,7 @@ const global = useGlobalStore()
     <LineBox :value="global.attrib.Headers.FileHdr.SizeOfOptionalHeader.value">可选头大小</LineBox>
     <LineBox :value="global.attrib.Headers.FileHdr.Machine.value">目标设备类型
       <template #Info>
-        <el-checkbox-group v-model="global.attrib.Headers.FileHdr.extra_Machine">
+        <el-checkbox-group v-model="PageInfo.Machine_enable">
         <p v-for="(item) in FileHdrMachine_Captions">
           <el-checkbox :label="item.name" :value="item.value" true-value="?"></el-checkbox>
         </p>
@@ -79,7 +110,7 @@ const global = useGlobalStore()
     </LineBox>
     <LineBox :value="global.attrib.Headers.FileHdr.Characteristics.value">文件属性
       <template #Info>
-        <el-checkbox-group v-model="global.attrib.Headers.FileHdr.extra_Characteristics_enableBits">
+        <el-checkbox-group v-model="PageInfo.Characteristics_enable">
         <p v-for="(name, i) in FileHdrCharacteristics_Captions">
           <el-checkbox :label="name" :value="i" true-value="?" v-if="i != 6"></el-checkbox>
         </p>
@@ -99,7 +130,7 @@ const global = useGlobalStore()
       <LineBoxStuMbr :StuMbr="global.attrib.Headers.OptFileHdr.SizeOfUninitializedData">SizeOfUninitializedData</LineBoxStuMbr>
       <LineBoxStuMbr :StuMbr="global.attrib.Headers.OptFileHdr.AddressOfEntryPoint">AddressOfEntryPoint</LineBoxStuMbr>
       <LineBoxStuMbr :StuMbr="global.attrib.Headers.OptFileHdr.BaseOfCode">BaseOfCode</LineBoxStuMbr>
-      <LineBoxStuMbr :StuMbr="global.attrib.Headers.OptFileHdr.BaseOfData" v-if="(global.attrib.OverView.Is64bit == '32')">BaseOfData</LineBoxStuMbr>
+      <LineBoxStuMbr :StuMbr="global.attrib.Headers.OptFileHdr.BaseOfData" v-if="(!global.attrib.OverView.Is64bit)">BaseOfData</LineBoxStuMbr>
       <LineBoxStuMbr :StuMbr="global.attrib.Headers.OptFileHdr.ImageBase">ImageBase</LineBoxStuMbr>
       <LineBoxStuMbr :StuMbr="global.attrib.Headers.OptFileHdr.SectionAlignment">SectionAlignment</LineBoxStuMbr>
       <LineBoxStuMbr :StuMbr="global.attrib.Headers.OptFileHdr.FileAlignment">FileAlignment</LineBoxStuMbr>
@@ -132,7 +163,7 @@ const global = useGlobalStore()
     <LineBox :value="global.attrib.Headers.OptFileHdr.SizeOfUninitializedData.value">未初始化数据大小</LineBox>
     <LineBox :value="global.attrib.Headers.OptFileHdr.AddressOfEntryPoint.value">程序入口</LineBox>
     <LineBox :value="global.attrib.Headers.OptFileHdr.BaseOfCode.value">代码段入口</LineBox>
-    <LineBox :value="(global.attrib.OverView.Is64bit == '32') ? (global.attrib.Headers.OptFileHdr.BaseOfData.value) : ''">
+    <LineBox :value="(!global.attrib.OverView.Is64bit) ? (global.attrib.Headers.OptFileHdr.BaseOfData.value) : ''">
       数据段入口</LineBox>
     <LineBox :value="global.attrib.Headers.OptFileHdr.ImageBase.value">程序默认基址</LineBox>
     <LineBox :value="global.attrib.Headers.OptFileHdr.SectionAlignment.value">区块对齐值</LineBox>

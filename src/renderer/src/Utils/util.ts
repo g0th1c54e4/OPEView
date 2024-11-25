@@ -22,3 +22,11 @@ export function base64ToUint8Array(base64String : string) : Uint8Array{
     }
     return bytes;
 }
+
+export function hexToNumber(hex : string) : number{
+  return parseInt(hex, 16)
+}
+
+export function numberToHex(num : number) : string{
+  return Number(num).toString(16)
+}
