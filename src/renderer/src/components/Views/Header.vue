@@ -13,12 +13,15 @@ const global = useGlobalStore()
 interface PageInfoType{
   Characteristics_enable: number[]
   Machine_enable: number[],
-  
+  Subsystem_enable: number[],
+  DllCharacteristics_enable: number[]
 }
 
 const PageInfo : PageInfoType = reactive({
   Characteristics_enable: [],
-  Machine_enable: []
+  Machine_enable: [],
+  Subsystem_enable: [],
+  DllCharacteristics_enable: []
 })
 
 watch(
@@ -26,15 +29,23 @@ watch(
   (_Headers) => {
     PageInfo.Characteristics_enable.splice(0, PageInfo.Characteristics_enable.length);
     PageInfo.Machine_enable.splice(0, PageInfo.Machine_enable.length);
+    PageInfo.Subsystem_enable.splice(0, PageInfo.Subsystem_enable.length);
+    PageInfo.DllCharacteristics_enable.splice(0, PageInfo.DllCharacteristics_enable.length);
     
     for (let i = 0; i < 16; i++) { // 有BUG
       if (i == 6) { continue } // 跳过 0x40
       if ((hexToNumber(global.attrib.Headers.FileHdr.Characteristics.value) & (1 << i)) != 0) {
         PageInfo.Characteristics_enable.push(i)
-		  }
-      
+		  } 
     }
 
+    for (let i = 4; i < 16; i++) {
+      if ((hexToNumber(global.attrib.Headers.OptFileHdr.DllCharacteristics.value) & (1 << i)) != 0) {
+        PageInfo.DllCharacteristics_enable.push(i)
+		  }
+    }
+
+    PageInfo.Subsystem_enable.push(hexToNumber(global.attrib.Headers.OptFileHdr.Subsystem.value))
     PageInfo.Machine_enable.push(hexToNumber(global.attrib.Headers.FileHdr.Machine.value))
   }, {immediate: true}
 )
@@ -180,7 +191,7 @@ watch(
     <LineBox :value="global.attrib.Headers.OptFileHdr.CheckSum.value">映像校验和</LineBox>
     <LineBox :value="global.attrib.Headers.OptFileHdr.Subsystem.value">文件子系统
       <template #Info>
-        <el-checkbox-group v-model="global.attrib.Headers.OptFileHdr.extra_Subsystem">
+        <el-checkbox-group v-model="PageInfo.Subsystem_enable">
         <p v-for="(name, i) in SubSystem_Captions">
           <el-checkbox :label="name" :value="i" true-value="?"></el-checkbox>
         </p>
@@ -189,7 +200,7 @@ watch(
     </LineBox>
     <LineBox :value="global.attrib.Headers.OptFileHdr.DllCharacteristics.value">Dll属性
       <template #Info>
-        <el-checkbox-group v-model="global.attrib.Headers.OptFileHdr.extra_DllCharacteristics_enableBits">
+        <el-checkbox-group v-model="PageInfo.DllCharacteristics_enable">
         <p v-for="(name, i) in DllCharacteristics_Captions">
           <el-checkbox :label="name" :value="i" true-value="?" v-if="i > 4"></el-checkbox>
         </p>

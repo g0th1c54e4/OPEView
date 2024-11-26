@@ -30,3 +30,10 @@ export function hexToNumber(hex : string) : number{
 export function numberToHex(num : number) : string{
   return Number(num).toString(16)
 }
+
+export function fillZeroPrefix(str : string, prefixNum : number) : string{
+  for (let i = 0; i < prefixNum; i++) {
+    str = "0" + str;
+  }
+  return str;
+}

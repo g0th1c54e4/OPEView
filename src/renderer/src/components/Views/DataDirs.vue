@@ -6,6 +6,8 @@ import LineBoxStuMbr from '../Show/LineBoxStuMbr.vue';
 import Divider from '../Show/Divider.vue';
 import { reactive, watch } from 'vue';
 import { rva2foa, rva_sectionName } from '@renderer/Utils/peutil';
+import { DataDir_Captions } from '@renderer/captions';
+import { fillZeroPrefix } from '@renderer/Utils/util';
 
 const global = useGlobalStore()
 
@@ -23,9 +25,11 @@ watch(
     (DataDirectory) => {
         Page_DataDirectorys.splice(0, Page_DataDirectorys.length);
         for (let i = 0; i < DataDirectory.length; i++) {
-            let labelName = "" // TODO
+            let labelName = DataDir_Captions[i]
             let _VirtualAddrFOA = rva2foa(DataDirectory[i].VirtualAddress.value)
+            _VirtualAddrFOA = fillZeroPrefix(_VirtualAddrFOA, 8 - _VirtualAddrFOA.length);
             let _SectionName = rva_sectionName(DataDirectory[i].VirtualAddress.value)
+
             Page_DataDirectorys.push({
                 Name: labelName,
                 VirtualAddr: DataDirectory[i].VirtualAddress.value,

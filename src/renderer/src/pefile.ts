@@ -79,9 +79,6 @@ export interface IMAGE_OPTIONAL_HEADER {
     LoaderFlags : StructMember,
     NumberOfRvaAndSizes : StructMember,
     DataDirectory : IMAGE_DATA_DIRECTORY[],
-    //----
-    extra_DllCharacteristics_enableBits : number[]
-    extra_Subsystem : number[]
 }
 
 export interface IMAGE_SECTION_HEADER {

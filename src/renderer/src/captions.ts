@@ -181,3 +181,21 @@ export const DllCharacteristics_Captions : string[] = [
     "Image supports Control Flow Guard",
     "Terminal Server Aware"
 ]
+
+export const DataDir_Captions: string[] = [
+    "Export Directory (导出表)",
+    "Import Directory (导入表)",
+    "Resource Directory (资源表)",
+    "Exception Directory (异常表)",
+    "Security Directory",
+    "Base Relocation Table (重定位表)",
+    "Debug Directory",
+    "Architecture Specific Data",
+    "RVA of GP",
+    "TLS Directory (线程存储)",
+    "Load Configuration Directory",
+    "Bound Import Directory in headers",
+    "Import Address Table",
+    "Delay Load Import Descriptors",
+    "COM Runtime descriptor"
+]

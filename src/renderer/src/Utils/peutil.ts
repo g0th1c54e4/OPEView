@@ -1,8 +1,9 @@
 import { useGlobalStore } from "@renderer/store";
 import { hexToNumber, numberToHex } from "./util";
-const global = useGlobalStore()
+
 
 export function rva2foa(rva : string) : string{
+    const global = useGlobalStore()
     const rva_num : number = hexToNumber(rva)
     if (rva_num < hexToNumber(global.attrib.Headers.OptFileHdr.SizeOfHeaders.value)){
         return rva
@@ -21,6 +22,7 @@ export function rva2foa(rva : string) : string{
 }
 
 export function foa2rva(foa : string) : string{
+    const global = useGlobalStore()
     const foa_num : number = hexToNumber(foa)
     if (foa_num < hexToNumber(global.attrib.Headers.OptFileHdr.SizeOfHeaders.value)){
         return foa
@@ -39,9 +41,10 @@ export function foa2rva(foa : string) : string{
 }
 
 export function rva_sectionName(rva : string) : string{
+    const global = useGlobalStore()
     const rva_num : number = hexToNumber(rva)
     if (rva_num < hexToNumber(global.attrib.Headers.OptFileHdr.SizeOfHeaders.value)){
-        return rva
+        return ""
     }
     let ret : string = ""
     for (let i = 0; i < hexToNumber(global.attrib.Headers.FileHdr.NumberOfSections.value); i++) {

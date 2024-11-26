@@ -56,15 +56,15 @@ async function test(){
 
       <div class="btns">
         <el-button-group>
-        <el-button type="primary" style="width: 80px;" plain>保存</el-button>
-        <el-button type="primary" style="width: 80px;" plain>关闭</el-button>
-        <el-button type="primary" style="width: 80px;" @click="test" plain>刷新</el-button>
+        <el-button type="primary" style="width: 80px;" :disabled="global.attrib.OverView.FilePath == ''" plain>保存</el-button>
+        <el-button type="primary" style="width: 80px;" :disabled="global.attrib.OverView.FilePath == ''" plain>关闭</el-button>
+        <el-button type="primary" style="width: 80px;" :disabled="global.attrib.OverView.FilePath == ''" @click="test" plain>刷新</el-button>
 
         </el-button-group>
 
         <el-tooltip placement="bottom">
           <template #content>RVA <-> FOA</template>
-          <el-button type="primary" style="width: 130px;" @click="calc_drawer=true" plain>计算器</el-button>
+          <el-button type="primary" style="width: 130px;" @click="calc_drawer=true" :disabled="global.attrib.OverView.FilePath == ''" plain>计算器</el-button>
         </el-tooltip>
 
         <el-button-group>
